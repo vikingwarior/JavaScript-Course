@@ -20,3 +20,11 @@ console.log(`learning something \tnew`)
 // words  followed by \r are used to replace the leading n words
 console.log(`learning something \rnew`)
 
+
+/**
+ * String Methods:
+ * - slice(startIndex, endIndex) -> Slices the string between given sequences
+ * - replace("old", "new") -> Replaces a said part of the string with given input
+ * - concat(string...) -> concatinates given input at the end of our string
+ * - trim() -> removes trailing and leading spaces of a given string
+ */
