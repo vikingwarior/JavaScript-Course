@@ -30,4 +30,4 @@ let deletedValues = numbers.splice(2, 2, 1003, 1004, 1005)
 
 console.log(`Splicing:`)
 console.log(`Deleted Values During Splicing:\n${deletedValues.toString()}\n`)
-console.log(`Arrays After Splicing:\n${numbers.toString()}\n`)
+console.log(`Array After Splicing:\n${numbers.toString()}\n`)
