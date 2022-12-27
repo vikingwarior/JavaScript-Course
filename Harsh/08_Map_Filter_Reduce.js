@@ -26,3 +26,13 @@ console.log(`Map method:\n${a}\n`)
 a = arr.filter((value) => { return value > 20 })
 console.log('Filter Method\n' + a + '\n')
 
+// Array Reduce Method:
+// Reduces an array to a singular value by following our custom built criteria
+
+let red_arr = [1, 2, 9, 3, 7, 9]
+console.log(`Sample array for reduce function:\n${red_arr}`)
+let r = red_arr.reduce((num) => {
+    console.log(num)
+    return num
+})
+console.log(`Array reduce function:\n${r}`)
