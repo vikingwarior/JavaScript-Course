@@ -20,3 +20,9 @@ let a = arr.map((value, index, array) => {
 });
 console.log(`Map method:\n${a}\n`)
 
+//Array filter method:
+//returns the value which are true for given fuction
+
+a = arr.filter((value) => { return value > 20 })
+console.log('Filter Method\n' + a + '\n')
+
