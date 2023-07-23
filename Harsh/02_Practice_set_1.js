@@ -12,4 +12,4 @@ const r = {
 
 // r = 3  // not possible(cannot alter a constant after declaration)
 r['class'] = 3
-console.log(r)
+

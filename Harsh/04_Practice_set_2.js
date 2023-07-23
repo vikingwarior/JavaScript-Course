@@ -14,6 +14,9 @@
 //     console.log(marks[key])
 // }
 
+// Structure of a function
+// let(declaration) functionName = (parameters) => {logic to be executed}
+
 // Function to calculate average of numbers
 
 let avg = (n1, n2, n3) =>{
