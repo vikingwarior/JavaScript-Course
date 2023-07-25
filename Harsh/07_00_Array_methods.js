@@ -2,8 +2,10 @@
 // unshift() -> adds an element from the beginning of the array
 // concat() -> merge two arrays 
 
+// delete -> deletes an element from the array
+
 //sort() -> Sorts the array
-// Native Sorting in JS
+// Native Sorting in JS is in Lexicographical(alphabetical) Order
 let nums = [32, 123, 320, 24, 240, 58, 9, 470]
 
 // This is not traditional sorting, this will produce an output like:
@@ -19,7 +21,7 @@ let compare = (a, b) =>{
 
 // This is the shorthand command for above implementation
 nums.sort((a, b) => {return a - b})
-console.log(`Traditional sorting:\n${nums.toString()}\n`)
+console.log(`Traditional sorting:\n${nums}\n`)
 
 // Splice Function
 // splice(startIndex, noOfArgumentsToBeRemoved, ArgumentsToBeReplacedWith)
@@ -31,3 +33,9 @@ let deletedValues = numbers.splice(2, 2, 1003, 1004, 1005)
 console.log(`Splicing:`)
 console.log(`Deleted Values During Splicing:\n${deletedValues.toString()}\n`)
 console.log(`Array After Splicing:\n${numbers.toString()}\n`)
+
+
+/*delete() -> deletes an element from the array the length of array remains the same but the value of the element becomes undefined*/
+delete nums[2];
+console.log(`After element [2] Deleting: ${nums}\n`);
+console.log(`Vslue at index [2] after Deleting: ${nums[2]}\n`);
