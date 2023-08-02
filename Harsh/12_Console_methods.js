@@ -1,18 +1,18 @@
-// console.log(console)
-// console.warn("lol warning")
-// console.error("lol error")
+console.log(console)
+console.warn("lol warning")
+console.error("lol error")
 
-// //asserts if condition is ttrue
-// console.assert(2>1)
+//asserts if condition is ttrue
+console.assert(2>1)
 
-// a = {a:1, b:2, c:3}
-// console.table(a)
+a = {a:1, b:2, c:3}
+console.table(a)
 
-//Starts the timer for a givne label
-// console.time('o1')
+// Starts the timer for a givne label
+console.time('o1')
 
-// //Returns the time it took the specified label to reach the particular point
-// console.timeEnd('o1')
+//Returns the time it took the specified label to reach the particular point
+console.timeEnd('o1')
 
 //count the time taken by for loop
 console.time('forcounter')
