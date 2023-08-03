@@ -9,7 +9,7 @@ console.log(`${name} ${surname}`)
 
 //Escape Sequences
 
-// \ followed by ` or' or "" is used to print any of these 3 as strings
+// \ followed by ` or' or " is used to print any of these 3 as strings
 console.log(`learning something \`new`)
 console.log('learning something \'new')
 console.log("learning something \"new")
