@@ -1,0 +1,16 @@
+body{
+    margin: auto;
+}
+
+ul{
+    display: flex;
+    margin: 0;
+    padding-left: 10px;
+    background-color: burlywood;
+}
+
+ul li{
+    padding: 0.5rem;
+    margin: 0 15px;
+    list-style: none;
+}
