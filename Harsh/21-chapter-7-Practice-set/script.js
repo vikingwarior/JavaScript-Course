@@ -15,3 +15,8 @@ for (let element of liElementTags) {
     element.style.backgroundColor = "cyan";
 }
 
+//or
+
+Array.from(liElementTags).forEach(element => {
+    element.style.background = "cyan";
+});
