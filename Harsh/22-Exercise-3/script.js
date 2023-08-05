@@ -13,7 +13,7 @@ let jokePlaceHolder = document.getElementsByClassName("joke")[0];
 console.log(jokePlaceHolder)
 
 let jokeTeller = (num) => {
-    jokePlaceHolder.innerHTML = `${jokeList[num]}`;
+    jokePlaceHolder.innerHTML = jokeList[num];
 }
 
 jokeTeller(Math.floor(Math.random()*10));
