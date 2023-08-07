@@ -44,4 +44,4 @@ console.log(".textContent of obj1 -> " + obj1.textContent)
 console.log(" ")
 
 //.hidden property
-console.log(".hidden property -> This property is by default 'false' but if set to 'true' The element will be hidden on the UI, however it can still be accessed using DOM")
+console.log(".hidden property -> This property is by default 'false' but if set to 'true' The element will be hidden on the UI, however it can still be accessed using DOM.")
