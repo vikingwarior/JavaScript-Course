@@ -43,3 +43,17 @@ d.innerHTML += "Using elem.replaceWith()";
 elem.replaceWith(d);
 
 // Practical Application:
+
+let ip;// = parseInt(prompt(`Which operation would you like to perform:
+// 1. Text Based Insertion
+// 2. Element Based Insertion 
+// 3. Append Method
+// 4. Prepend Method
+// 5. Before
+// 6. After
+// 7. Replace
+// 8. Delete
+
+// Enter the corresponding no. continue..........
+// `));
+
