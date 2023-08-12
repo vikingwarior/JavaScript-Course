@@ -27,4 +27,19 @@ elem.append(a);
 // element.prepend -> Inserts at the start of the container i.e. before the first child.
 elem.prepend(a);
 
+// element.before -> This method inserts before the element container on which it is invoked. 
+let b = document.createElement("h3")
+b.innerHTML +=  "Using elem.before()";
+elem.before(b);
 
+// element.after -> Inserts the given object after the element on which this method is being invoked
+let c = document.createElement("h3");
+c.innerHTML += "Using elem.after()";
+elem.after(c);
+
+// element.replaceWith -> Replaces the element on which it is being used with element provided in the paranthesis.
+let d = document.createElement("h3");
+d.innerHTML += "Using elem.replaceWith()";
+elem.replaceWith(d);
+
+// Practical Application:
