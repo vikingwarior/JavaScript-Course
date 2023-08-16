@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: green;
+}
+
+#elem {
+  color: red;
+  background-color: blanchedalmond;
+  border-style: solid;
+  border-color: red;
+}
