@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.redBackground{
+    background-color: red;
+}
+
+.greenBackground{
+    background-color: green;
+}
+
+.yellowText{
+    color: yellow;
+}
+
+.brownText{
+    color: brown;
+}
