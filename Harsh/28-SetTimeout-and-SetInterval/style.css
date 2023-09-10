@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  #highlighted-elem {
+    color: red;
+    background-color: blanchedalmond;
+    border-style: solid;
+    border-color: red;
+  }
+  
+  .redBackground {
+    background-color: red;
+  }
+  
+  .greenBackground {
+    background-color: green;
+  }
+  
+  .yellowText {
+    color: yellow;
+  }
+  
+  .brownText {
+    color: brown;
+  }
+  
