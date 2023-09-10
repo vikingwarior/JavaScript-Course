@@ -4,20 +4,27 @@
     text-align: center;
 }
 
-.redBackground{
-    background-color: red;
+#highlighted-elem {
+  color: red;
+  background-color: blanchedalmond;
+  border-style: solid;
+  border-color: red;
 }
 
-.greenBackground{
-    background-color: green;
+.redBackground {
+  background-color: red;
 }
 
-.yellowText{
-    color: yellow;
+.greenBackground {
+  background-color: green;
 }
 
-.brownText{
-    color: brown;
+.yellowText {
+  color: yellow;
+}
+
+.brownText {
+  color: brown;
 }
 
 .thickBorder{
