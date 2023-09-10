@@ -1,6 +1,7 @@
 *{
-    margin: 0;
-    padding: 0;
+    /* margin: 0; */
+    /* padding: 0; */
+    text-align: center;
 }
 
 .redBackground{
@@ -17,4 +18,8 @@
 
 .brownText{
     color: brown;
+}
+
+.thickBorder{
+    border: 5px solid black;
 }
