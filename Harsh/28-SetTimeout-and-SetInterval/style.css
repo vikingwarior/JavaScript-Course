@@ -1,10 +1,8 @@
 * {
-    margin: 0;
-    padding: 0;
     text-align: center;
   }
   
-  #highlighted-elem {
+  .highlighted-elem {
     color: red;
     background-color: blanchedalmond;
     border-style: solid;
@@ -27,3 +25,6 @@
     color: brown;
   }
   
+  .thickBorder{
+    border: 5px solid black;
+}
