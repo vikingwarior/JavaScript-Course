@@ -15,4 +15,15 @@ setTimeout(() => {
     e.insertAdjacentElement("afterend", elem);
 }, 5000);
 
-// setInterval(function, milliseconds) -> Executes the innerbody of the function after a specified milliseconds(time) and keeps on executing it after the specified time.
+// setInterval(function, milliseconds) -> Executes the innerbody of the function after a specified milliseconds(time) and keeps on executing it after the specified time. It is like an infinite loop that runs after the specified  interval
+
+let num = 1;
+let createAndInsertElement = () => {
+    let element = document.createElement("p");
+    element.classList.add("highlighted-elem");
+    element.innerHTML = `This element is insserted with the help of setInterval method for ${num}th time.`;
+    document.body.appendChild(element);
+    num++;
+    console.log(num);
+}
+setInterval(createAndInsertElement, 2000);
