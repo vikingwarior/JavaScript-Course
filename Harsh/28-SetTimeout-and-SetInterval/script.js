@@ -18,7 +18,7 @@ setTimeout(() => {
 // setInterval(function, milliseconds) -> Executes the innerbody of the function after a specified milliseconds(time) and keeps on executing it after the specified time. It is like an infinite loop that runs after the specified  interval
 
 let num = 1;
-let createAndInsertElement = () => {
+let createAndInsertElement = (n) => {
     let element = document.createElement("p");
     element.classList.add("highlighted-elem");
     element.innerHTML = `This element is insserted with the help of setInterval method for ${num}th time.`;
@@ -26,4 +26,4 @@ let createAndInsertElement = () => {
     num++;
     console.log(num);
 }
-setInterval(createAndInsertElement, 2000);
+setInterval(createAndInsertElement/*Function name*/, 2000/*Time*/, num/*Function Parameters*/);
