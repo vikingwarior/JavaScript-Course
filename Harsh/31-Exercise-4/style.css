@@ -1,0 +1,33 @@
+* {
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5em;
+  }
+  
+  #highlighted-elem {
+    color: red;
+    background-color: blanchedalmond;
+    border-style: solid;
+    border-color: red;
+  }
+  
+  .redBackground {
+    background-color: red;
+  }
+  
+  .greenBackground {
+    background-color: green;
+  }
+  
+  .yellowText {
+    color: yellow;
+  }
+  
+  .brownText {
+    color: brown;
+  }
+  
+  .thickBorder{
+    border: 5px solid black;
+}
