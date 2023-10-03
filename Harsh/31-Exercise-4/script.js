@@ -36,52 +36,40 @@ const initializeClock = () => {
 let startBtn, pauseBtn, resetBtn;
 
 // Stopwatch Counter Variables
-let StopwatchMinutes = 0, StopwatchHours = 0, StopwatchSeconds = 0;
+let StopwatchMinutes = 0, StopwatchHours = 0, StopwatchSeconds = 0, StopwatchMilliseconds = 0;
 
-let StopwatchMinutesInterval, StopwatchHoursInterval, StopwatchSecondsInterval;
+let StopwatchCounterInterval;
 
-// Functions to 
+// Functions to track and update stopwatch
 let intiateStopwatchCounter = () => {
-    
-    StopwatchHoursInterval = setInterval(() =>{
-        StopwatchHours += 1
-    },3600000);
+    pauseBtn.hidden = false;
+    startBtn.hidden = true;
 
-    StopwatchMinutesInterval = setInterval(() =>{
-        StopwatchMinutes += 1
-    },60000);
-  
-    StopwatchSecondsInterval = setInterval(() =>{
-        StopwatchSeconds += 1;
-        updateStopwatch();
-    },1000);
+    StopwatchCounterInterval = setInterval(() =>{
+            StopwatchMilliseconds += 1;
+            if (StopwatchMinutes === 59 && StopwatchSeconds === 59) {StopwatchHours += 1; StopwatchMinutes = 0; StopwatchSeconds = 0;}    
+            if (StopwatchSeconds === 59 ) {StopwatchMinutes += 1; StopwatchSeconds = 0;}    
+            if (StopwatchMilliseconds === 99 ) {StopwatchSeconds += 1; StopwatchMilliseconds = 0;}    
+
+            updateStopwatch();
+        },10);
         
     let updateStopwatch = () =>{
         document.getElementById('stopwatchFace').firstChild.remove();
-        document.getElementById('stopwatchFace').insertAdjacentText('afterbegin', `${StopwatchHours} : ${StopwatchMinutes} : ${StopwatchSeconds}`);
+        document.getElementById('stopwatchFace').insertAdjacentText('afterbegin', `0${StopwatchHours} : 0${StopwatchMinutes} : ${StopwatchSeconds}.${StopwatchMilliseconds}`);
     }
 }
 let pauseStopwatchCounter = () => {
-    clearInterval(StopwatchHoursInterval);
-    clearInterval(StopwatchMinutesInterval);
-    clearInterval(StopwatchSecondsInterval);
+    clearInterval(StopwatchCounterInterval);
 }
 
 // Function to render stopwatch 
-const renderStopwatch = () => {
-    stopwatchButton.hidden = true; 
-    watchButton.hidden = false;    
-    timerButton.hidden = false;
 
-    clearInterval(intervalId); // Clear the interval using the stored ID
-    watchFace.innerHTML = "<b>Stopwatch</b>"
-    
-    resetStopwatchUI();
-
+let renderCounterButtons = () => {
     let stopWatchBtnDiv = document.createElement("div");
     stopWatchBtnDiv.id = "stopWatchBtnDiv";
     stopWatchBtnDiv.innerHTML = `<button id="startBtn">Start</button>
-                                 <button id="pauseBtn">Pause</button>
+                                 <button id="pauseBtn" hidden>Pause</button>
                                  <button id="resetBtn">Reset</button>`;
 
     document.getElementById("stopwatchFace").appendChild(stopWatchBtnDiv);
@@ -95,19 +83,32 @@ const renderStopwatch = () => {
     resetBtn.addEventListener('click', () => renderStopwatch());
 }
 
-const resetStopwatchUI = () => {
+const renderStopwatch = () => {
+    stopwatchButton.hidden = true; 
+    watchButton.hidden = false;    
+    timerButton.hidden = false;
+
+    clearInterval(intervalId); // Clear the interval using the stored ID
+    watchFace.innerHTML = "<b>Stopwatch</b>"
+    
+    resetCounterwatchUI();
+}
+
+const resetCounterwatchUI = () => {
 
     pauseStopwatchCounter();
 
     StopwatchMinutes = 0;
     StopwatchHours = 0; 
     StopwatchSeconds = 0;
+    StopwatchMilliseconds = 0;
 
     let stopwatchFace = document.createElement("div");
     stopwatchFace.id = "stopwatchFace";
-    stopwatchFace.innerHTML = "0 : 0 : 0";
+    stopwatchFace.innerHTML = "00 : 00 : 00.000";
     
     watchFace.appendChild(stopwatchFace);
+    renderCounterButtons();
 }
 
 // Adding event listeners to the buttons to manipulate states
