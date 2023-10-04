@@ -18,6 +18,7 @@ const renderClock = (clockFace) => {
     date.innerHTML = `${weekDays[DateObject.getDay()]}, ${months[DateObject.getMonth()]} ${DateObject.getDate()}   ${DateObject.getFullYear()}`;
     time.innerHTML = `${DateObject.getHours()} : ${DateObject.getMinutes()} : ${DateObject.getSeconds()}`;
 
+    clockFace.innerHTML = "<b>Clock</b>";
     clockFace.appendChild(date);
     clockFace.appendChild(time);
 }
@@ -30,38 +31,13 @@ const initializeClock = () => {
     intervalId = setInterval(() => renderClock(watchFace), 500);
 }
 
-// initializeClock();
-
-// Logic For Stopwatch Begins here:
+  ////////////////////////////////////
+ //Logic For Stopwatch Begins here://
+////////////////////////////////////
 let startBtn, pauseBtn, resetBtn;
 
 // Stopwatch Counter Variables
 let StopwatchMinutes = 0, StopwatchHours = 0, StopwatchSeconds = 0, StopwatchMilliseconds = 0;
-
-let StopwatchCounterInterval;
-
-// Functions to track and update stopwatch
-let intiateStopwatchCounter = () => {
-    pauseBtn.hidden = false;
-    startBtn.hidden = true;
-
-    StopwatchCounterInterval = setInterval(() =>{
-            StopwatchMilliseconds += 1;
-            if (StopwatchMinutes === 59 && StopwatchSeconds === 59) {StopwatchHours += 1; StopwatchMinutes = 0; StopwatchSeconds = 0;}    
-            if (StopwatchSeconds === 59 ) {StopwatchMinutes += 1; StopwatchSeconds = 0;}    
-            if (StopwatchMilliseconds === 99 ) {StopwatchSeconds += 1; StopwatchMilliseconds = 0;}    
-
-            updateStopwatch();
-        },10);
-        
-    let updateStopwatch = () =>{
-        document.getElementById('stopwatchFace').firstChild.remove();
-        document.getElementById('stopwatchFace').insertAdjacentText('afterbegin', `0${StopwatchHours} : 0${StopwatchMinutes} : ${StopwatchSeconds}.${StopwatchMilliseconds}`);
-    }
-}
-let pauseStopwatchCounter = () => {
-    clearInterval(StopwatchCounterInterval);
-}
 
 // Function to render stopwatch 
 
@@ -72,7 +48,7 @@ let renderCounterButtons = () => {
                                  <button id="pauseBtn" hidden>Pause</button>
                                  <button id="resetBtn">Reset</button>`;
 
-    document.getElementById("stopwatchFace").appendChild(stopWatchBtnDiv);
+    document.getElementById("watchFace").appendChild(stopWatchBtnDiv);
 
     startBtn = document.getElementById("startBtn");
     pauseBtn = document.getElementById("pauseBtn");
@@ -96,8 +72,6 @@ const renderStopwatch = () => {
 
 const resetCounterwatchUI = () => {
 
-    pauseStopwatchCounter();
-
     StopwatchMinutes = 0;
     StopwatchHours = 0; 
     StopwatchSeconds = 0;
@@ -111,9 +85,40 @@ const resetCounterwatchUI = () => {
     renderCounterButtons();
 }
 
+let StopwatchCounterInterval;
+
+// Functions to track and update stopwatch
+let intiateStopwatchCounter = () => {
+    pauseBtn.hidden = false;
+    startBtn.hidden = true;
+
+    StopwatchCounterInterval = setInterval(() =>{
+            StopwatchMilliseconds += 1;
+            if (StopwatchMinutes === 59 && StopwatchSeconds === 59) {StopwatchHours += 1; StopwatchMinutes = 0; StopwatchSeconds = 0;}    
+            if (StopwatchSeconds === 59 ) {StopwatchMinutes += 1; StopwatchSeconds = 0;}    
+            if (StopwatchMilliseconds === 99 ) {StopwatchSeconds += 1; StopwatchMilliseconds = 0;}    
+
+            updateStopwatch();
+        },10);
+        
+    let updateStopwatch = () =>{
+        document.getElementById('stopwatchFace').firstChild.remove();
+        document.getElementById('stopwatchFace').insertAdjacentText('afterbegin', `0${StopwatchHours} : 0${StopwatchMinutes} : ${StopwatchSeconds}.${StopwatchMilliseconds}`);
+    }
+}
+let pauseStopwatchCounter = () => {
+    pauseBtn.hidden = true;
+    startBtn.hidden = false;
+    
+    clearInterval(StopwatchCounterInterval);
+}
+
 // Adding event listeners to the buttons to manipulate states
 watchButton.addEventListener('click', () => initializeClock());
 stopwatchButton.addEventListener('click', () => renderStopwatch());
 timerButton.addEventListener('click', () => renderTimer());
 
-renderStopwatch();
+  /////////////////////////////////
+ // Logic For Timer Begins here://
+/////////////////////////////////
+
