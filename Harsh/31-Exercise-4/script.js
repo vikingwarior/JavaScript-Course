@@ -67,7 +67,7 @@ const renderStopwatch = () => {
 
   clearInterval(clockInterval); // Clear the interval using the stored ID
   clearInterval(StopwatchCounterInterval);
-  
+
   watchFace.innerHTML = "Stopwatch";
 
   resetStopwatchUI();
@@ -91,14 +91,22 @@ let renderStopwatchButtons = () => {
   let stopWatchBtnDiv = document.createElement("div");
   stopWatchBtnDiv.id = "stopWatchBtnDiv";
   stopWatchBtnDiv.innerHTML = `<button id="startBtn">Start</button>
-                                 <button id="pauseBtn" hidden>Pause</button>
-                                 <button id="resetBtn">Reset</button>`;
+                            <button id="pauseBtn" hidden>Pause</button>
+                            <button id="resetBtn">Reset</button>`;
 
   document.getElementById("watchFace").appendChild(stopWatchBtnDiv);
 
   startBtn = document.getElementById("startBtn");
   pauseBtn = document.getElementById("pauseBtn");
   resetBtn = document.getElementById("resetBtn");
+
+  startBtn.classList.add("btn");
+  pauseBtn.classList.add("btn");
+  resetBtn.classList.add("btn");
+
+  startBtn.classList.add("btn-outline-success");
+  pauseBtn.classList.add("btn-outline-warning");
+  resetBtn.classList.add("btn-outline-info");
 
   startBtn.addEventListener("click", () => intiateStopwatchCounter());
   pauseBtn.addEventListener("click", () => pauseStopwatchCounter());
@@ -130,13 +138,9 @@ let intiateStopwatchCounter = () => {
   }, 10);
 
   let updateStopwatch = () => {
-    document.getElementById("stopwatchFace").firstChild.remove();
-    document
-      .getElementById("stopwatchFace")
-      .insertAdjacentText(
-        "afterbegin",
-        `0${StopwatchHours} : 0${StopwatchMinutes} : ${StopwatchSeconds}.${StopwatchMilliseconds}`
-      );
+    document.getElementById(
+      "stopwatchFace"
+    ).innerHTML = `${StopwatchHours} : ${StopwatchMinutes} : ${StopwatchSeconds}.${StopwatchMilliseconds}`;
   };
 };
 let pauseStopwatchCounter = () => {
@@ -185,7 +189,6 @@ const resetTimerUI = () => {
 
   watchFace.appendChild(TimerFace);
 
-
   renderTimerButtons();
 };
 
@@ -201,6 +204,14 @@ let renderTimerButtons = () => {
   startBtn = document.getElementById("startBtn");
   pauseBtn = document.getElementById("pauseBtn");
   resetBtn = document.getElementById("resetBtn");
+
+  startBtn.classList.add("btn");
+  pauseBtn.classList.add("btn");
+  resetBtn.classList.add("btn");
+
+  startBtn.classList.add("btn-outline-success");
+  pauseBtn.classList.add("btn-outline-warning");
+  resetBtn.classList.add("btn-outline-info");
 
   startBtn.addEventListener("click", () => intiateTimerCounter());
   pauseBtn.addEventListener("click", () => pauseTimerCounter());
@@ -252,13 +263,9 @@ let intiateTimerCounter = () => {
   }, 10);
 
   let updateTimer = () => {
-    document.getElementById("TimerFace").innerHTML = "";
-    document
-      .getElementById("TimerFace")
-      .insertAdjacentText(
-        "afterbegin",
-        `${timerHours} : ${timerMinutes} : ${timerSeconds}.${timerMilliseconds}`
-      );
+    document.getElementById(
+      "TimerFace"
+    ).innerHTML = `${timerHours} : ${timerMinutes} : ${timerSeconds}.${timerMilliseconds}`;
   };
 };
 
@@ -269,7 +276,6 @@ let pauseTimerCounter = () => {
   document.getElementById("TimerFace").innerHTML = `
   <input type='number' value='${timerHours}' min='0' id='timerHoursBox' class='timerBox'> : <input type='number' value='${timerMinutes}' min='0' id='timerMinutesBox' class='timerBox'> : <input type='number' value='${timerSeconds}' min='0' id='timerSecondsBox' class='timerBox'>.${timerMilliseconds}`;
 };
-
 
 // Adding event listeners to the buttons to manipulate states
 watchButton.addEventListener("click", () => initializeClock());

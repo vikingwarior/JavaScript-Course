@@ -32,7 +32,16 @@
   }
 
   .timerBox{
-    width: 1.5rem;
+    width: 3rem;
     height: 1.5rem;
-    
+    border: 0.3px solid;  
+    background-color: #181a1b;
+    color: #ffffff8e;  
   }
+
+  #clock{
+    background-color: #181a1b;
+    color: #ffffff8e;
+    width: 40.8rem;
+  }
+  
