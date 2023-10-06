@@ -1,0 +1,33 @@
+* {
+  text-align: center;
+  background-color: #181a1b;
+  color: #ffffff8e;
+  font-size: 1.5rem;
+}
+  
+  #highlighted-elem {
+    color: red;
+    background-color: blanchedalmond;
+    border-style: solid;
+    border-color: red;
+  }
+  
+  .redBackground {
+    background-color: red;
+  }
+  
+  .greenBackground {
+    background-color: green;
+  }
+  
+  .yellowText {
+    color: yellow;
+  }
+  
+  .brownText {
+    color: brown;
+  }
+  
+  .thickBorder{
+    border: 5px solid black;
+}
