@@ -30,7 +30,7 @@ console.log(promise);
  * Promise.then -> If the promise is executed successfully, then the logic mentioned inside the logic is executed
  * Promise.catch -> This stores logic to handle the case in which a promise is rejected
  *
- * They both are linked to each other and often written in an if-elsequece fashion
+ * They both pose resemblence to try and catch
  */
 
 promise.then(
@@ -47,6 +47,66 @@ promise.then(
 );
 
 /**
+ * Attaching Multiple Handlers -> When a given promise object has more than one instances of Object.then attached to it
+ *
+ */
+
+promise.then(() => {
+  console.log("This is the first handler of multiple Promise Handlers")
+});
+
+promise.then(() => {
+  console.log("This is the second handler of multiple Promise Handlers")
+});
+
+promise.then(() => {
+  console.log("This is the third handler of multiple Promise Handlers")
+});
+
+/**
  * Promise chaining -> Promise chaining is the process to attach promises to the end of a promise. These promises are often dependent on each other's output
  *
  */
+
+let promiseChaningContainer = promise
+  .then(
+    () => {
+      console.log("Promise chain invoked");
+      return y;
+    },
+    () => {
+      console.log("Failed to Invoke chain");
+    }
+  )
+
+  .then(
+    (num) => {
+      console.log(`Element no ${num} of chain invoked`);
+      return num + 1;
+    },
+    () => {
+      console.log("Chain of promises broke");
+      return reject(); // This will mark the next promise in the chain as rejected and therefore explictly trigger the catch block of its trailing promise. If we won't return reject() explicitly this will then trigger then block of the trailing promise and the variable(num) will be passed as 'undefined'.
+    }
+  )
+
+  .then(
+    (num) => {
+      console.log(`Element no ${num} of chain invoked`);
+      return num + 1;
+    },
+    () => {
+      console.log("Chain of promises broke");
+      return reject();
+    }
+  )
+
+  .then(
+    (num) => {
+      console.log(`Element no ${num} of chain invoked`);
+      return num + 1;
+    },
+    () => {
+      console.log("Chain of promises broke");
+    }
+  );
