@@ -72,7 +72,7 @@ let promiseChaningContainer = promise
   .then(
     () => {
       console.log("Promise chain invoked");
-      return y;
+      return y; // This will be passed as input to the next promise in the chain
     },
     () => {
       console.log("Failed to Invoke chain");
