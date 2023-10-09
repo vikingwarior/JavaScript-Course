@@ -5,7 +5,7 @@
  * 
  * To encounter this, async and await are used.
  */
-// async -> When this keyword is used while function, it defines the JS engine that []. The functions with async keyword will always return a promise.
+// async -> When this keyword is used while function, it tells the JS engine that it will return a promise. The functions with async keyword will always return a promise.
 
 // await -> when used it pauses the JS execution thread until the specified async function or promise has not been resolved.
 
@@ -45,5 +45,6 @@ let sampleAsyncFxn = async () => {
     console.log(resB);
 }
 
-// sampleFxn();
-sampleAsyncFxn();
+console.log("Hi");
+let u = await sampleAsyncFxn();
+console.log("bye");
