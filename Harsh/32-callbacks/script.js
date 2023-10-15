@@ -14,10 +14,10 @@
  * 2. Callback hell: When there callbacks nested inside callbacks which are nested inside callbacks and so on.. This grows the size of code horizonatally, makes the code less readable, slow and difficult to maintain
  */
 
-let scriptLoader = (scriptSource, theFunctionToExecutePassedAsObject) => {
+let scriptLoader = (scriptSource, theFunctionToExecutePassedAsArgument) => {
   let scriptObject = document.createElement("script");
   scriptObject.src = scriptSource;
-  scriptObject.onload = () => theFunctionToExecutePassedAsObject("Harsh"); // The function which was passed as an argument is being invoked
+  scriptObject.onload = () => theFunctionToExecutePassedAsArgument("Harsh"); // The function which was passed as an argument is being invoked
   document.body.appendChild(scriptObject);
 };
 
