@@ -13,24 +13,24 @@
 
 // console.log(response);
 
-let IntroTxt = ["Welcome my Friend", "Click here to establish connection👇"];
+let introTxt = ["Welcome my Friend", "Click here to establish connection👇"];
 
-// let renderIntroTxt = (IntroTxt) => {
+// let renderIntroTxt = (introTxt) => {
 //     let introTextContainer = document.createElement("div");
 //     introTextContainer.id = "introTextContainer"
 
 //     document.getElementById("mainContainer").appendChild(introTextContainer);
-//     IntroTxt.forEach(async (val) => {
+//     introTxt.forEach(async (val) => {
 //     await typeMessage(val, introTextContainer);
 //   });
 // };
 
-// typeMessage(IntroTxt[0], document.getElementById("mainContainer"));
+// typeMessage(introTxt[0], document.getElementById("mainContainer"));
 
 let RenderText = (messages, container = `mainContainer`) => {
   container.innerHTML = ``;
   messages.forEach(async (message) => {
-    typeMessage(message, container);
+    await typeMessage(message, container);
     container.innerHTML += `<br>`;
   });
 };
@@ -47,4 +47,4 @@ let typeMessage = async (txt, container = `mainContainer`) => {
   console.log("lol");
 };
 
-RenderText(IntroTxt);
+RenderText(introTxt);
