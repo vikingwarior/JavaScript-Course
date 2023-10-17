@@ -47,4 +47,4 @@ let typeMessage = async (txt, container = `mainContainer`) => {
   console.log("lol");
 };
 
-RenderText(introTxt);
+RenderText(introTxt)
