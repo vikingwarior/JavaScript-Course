@@ -2,7 +2,7 @@
   background-color: #181a1b;
   color: #ffffff8e;
   font-size: 1.5rem;
-  min-height: 100vh;
+  text-align: center;
 }
 
 #highlighted-elem {
@@ -30,4 +30,12 @@
 
 .thickBorder {
   border: 5px solid black;
+}
+
+#container{
+  margin-top: 25vh;
+}
+
+button{
+  padding: ;
 }

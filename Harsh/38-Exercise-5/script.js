@@ -15,36 +15,42 @@
 
 let introTxt = ["Welcome my Friend", "Click here to establish connection👇"];
 
-// let renderIntroTxt = (introTxt) => {
-//     let introTextContainer = document.createElement("div");
-//     introTextContainer.id = "introTextContainer"
-
-//     document.getElementById("mainContainer").appendChild(introTextContainer);
-//     introTxt.forEach(async (val) => {
-//     await typeMessage(val, introTextContainer);
-//   });
-// };
-
-// typeMessage(introTxt[0], document.getElementById("mainContainer"));
-
-let RenderText = (messages, container = `mainContainer`) => {
+let RenderText = async (messages, containerId = `mainContainer`) => {
+  const container = document.getElementById(containerId);
   container.innerHTML = ``;
-  messages.forEach(async (message) => {
+
+  for (const message of messages) {
     await typeMessage(message, container);
     container.innerHTML += `<br>`;
+  }
+};
+
+let typeMessage = async (txt, container) => {
+  let i = 0;
+  let speed = 50;
+
+  return new Promise((resolve) => {
+    const typeNextChar = () => {
+      if (i < txt.length) {
+        container.innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeNextChar, speed);
+      } else {
+        resolve();
+      }
+    };
+
+    typeNextChar();
   });
 };
 
-let typeMessage = async (txt, container = `mainContainer`) => {
-  let i = 0;
-  let speed = 50;
-  container = document.getElementById(container);
-  if (i++ < txt.length) {
-    setTimeout(() => {
-        container.innerText += txt.charAt();
-    }, speed);
-  }
-  console.log("lol");
-};
+let renderLandingPage = async (text) => {
+  let connectButton = document.createElement('button');
+  connectButton.innerHTML = `Connect`;
+  connectButton.classList.add("btn");
+  connectButton.classList.add("btn-success");
+  await RenderText(text);
+  document.getElementById(`btnDiv`).appendChild(connectButton);
+}
 
-RenderText(introTxt)
+renderLandingPage(introTxt);
