@@ -13,44 +13,69 @@
 
 // console.log(response);
 
-let introTxt = ["Welcome my Friend", "Click here to establish connection👇"];
+let hackingPrank = async () => {
+  // Pass the array of sentenes that you want Render text inside also pass the container id in which the messages should be rendered
+  let RenderText = async (messages, containerId = `mainContainer`, speed = 50) => {
+    const container = document.getElementById(containerId);
+    container.innerHTML = ``;
 
-let RenderText = async (messages, containerId = `mainContainer`) => {
-  const container = document.getElementById(containerId);
-  container.innerHTML = ``;
+    for (const message of messages) {
+      await typeMessage(message, container, speed);
+      container.innerHTML += `<br>`;
+    }
+  };
 
-  for (const message of messages) {
-    await typeMessage(message, container);
-    container.innerHTML += `<br>`;
+  let typeMessage = async (txt, container, speed = 50) => {
+    let i = 0;
+
+    return new Promise((resolve) => {
+      const typeNextChar = () => {
+        if (i < txt.length) {
+          container.innerHTML += txt.charAt(i);
+          i++;
+          setTimeout(typeNextChar, speed);
+        } else {
+          resolve();
+        }
+      };
+
+      typeNextChar();
+    });
+  };
+
+  let connectBtn;
+
+  let renderLandingPage = async (text) => {
+    let connectButton = document.createElement("button");
+    connectButton.id = "connectBtn";
+    connectButton.innerHTML = `Connect`;
+    connectButton.classList.add("btn");
+    connectButton.classList.add("btn-outline-success");
+    await RenderText(text);
+    document.getElementById("mainContainer").appendChild(connectButton);
+    connectBtn = document.getElementById("connectBtn");
+    connectBtn.addEventListener("click", () => renderLoadingScreen());
+  };
+
+  let introTxt = [
+    "Welcome my Friend",
+    "Click here to connect with Wi-Fi",
+    "👇",
+  ];
+
+  // await renderLandingPage(introTxt);
+
+  let renderLoadingScreen = async () => {
+    await RenderText(["Connecting to Wi-Fi"]);
+    renderProgressBar();
+  };
+
+  renderProgressBar = () => {
+    
   }
+
+  renderLoadingScreen();
 };
 
-let typeMessage = async (txt, container) => {
-  let i = 0;
-  let speed = 50;
 
-  return new Promise((resolve) => {
-    const typeNextChar = () => {
-      if (i < txt.length) {
-        container.innerHTML += txt.charAt(i);
-        i++;
-        setTimeout(typeNextChar, speed);
-      } else {
-        resolve();
-      }
-    };
-
-    typeNextChar();
-  });
-};
-
-let renderLandingPage = async (text) => {
-  let connectButton = document.createElement('button');
-  connectButton.innerHTML = `Connect`;
-  connectButton.classList.add("btn");
-  connectButton.classList.add("btn-success");
-  await RenderText(text);
-  document.getElementById(`btnDiv`).appendChild(connectButton);
-}
-
-renderLandingPage(introTxt);
+hackingPrank();
