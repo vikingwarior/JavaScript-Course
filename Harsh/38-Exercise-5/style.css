@@ -32,6 +32,17 @@
   border: 5px solid black;
 }
 
-#mainContainer{
+img {
+ width : 100%;
+ height: 100%; 
+}
+
+#mainContainer {
   margin-top: 25vh;
+}
+
+.progress {
+  margin-left: 30%;
+  margin-top: 1.25rem;
+  width: 40%;
 }

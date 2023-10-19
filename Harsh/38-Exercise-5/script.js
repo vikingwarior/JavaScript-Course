@@ -67,14 +67,31 @@ let hackingPrank = async () => {
 
   let renderLoadingScreen = async () => {
     await RenderText(["Connecting to Wi-Fi"]);
-    renderProgressBar();
+    await renderProgressBar();
+    startThePrank();
   };
 
-  renderProgressBar = () => {
-    
+  let renderProgressBar = async () => {
+    document.getElementById("mainContainer").innerHTML += '<div class="progress" role="progressbar"><div class="progress-bar bg-info" style="width: 0%"></div></div>';
+    await updateProgressBar();
+    resolve();
   }
 
-  renderLoadingScreen();
+  let updateProgressBar = async () => {
+    let i = 0;
+    let progressUpdationInterval = setInterval(() => {
+      document.querySelector("div.progress-bar").style["width"] = `${i++ + 1}%`;
+      if (i >= 100) {clearInterval(progressUpdationInterval)};
+    },50);
+    resolve();
+  }
+
+  let startThePrank = () => {
+    let mainContainer = document.getElementById("mainContainer");
+    mainContainer.innerHTML = "<img src='media/1.gif'></img>"
+  }
+
+  startThePrank();
 };
 
 
