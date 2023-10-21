@@ -15,11 +15,7 @@
 
 let hackingPrank = async () => {
   // Pass the array of sentenes that you want Render text inside also pass the container id in which the messages should be rendered
-  let RenderText = async (
-    messages,
-    containerId = `mainContainer`,
-    speed = 50
-  ) => {
+  let RenderText = async (messages, containerId = `mainContainer`, speed = 50) => {
     const container = document.getElementById(containerId);
     container.innerHTML = ``;
 
@@ -76,74 +72,60 @@ let hackingPrank = async () => {
   };
 
   let renderProgressBar = async () => {
-    document.getElementById("mainContainer").innerHTML +=
-      '<div class="progress" role="progressbar"><div class="progress-bar bg-info" style="width: 0%"></div></div>';
+    document.getElementById("mainContainer").innerHTML += '<div class="progress" role="progressbar"><div class="progress-bar bg-info" style="width: 0%"></div></div>';
     await updateProgressBar();
     resolve();
-  };
+  }
 
   let updateProgressBar = async () => {
     let i = 0;
-    let progressUpdationInterval = setInterval(async () => {
+    let progressUpdationInterval = setInterval(() => {
       document.querySelector("div.progress-bar").style["width"] = `${i++ + 1}%`;
-      if (i >= 100) {
-        await clearInterval(progressUpdationInterval);
-        Promise.resolve();
-      }
-    }, 50);
+      if (i >= 100) {clearInterval(progressUpdationInterval)};
+    },50);
     resolve();
-    // return;
-  };
+  }
 
   let startThePrank = async () => {
     let mainContainer = document.getElementById("mainContainer");
     mainContainer.innerHTML = "<img src='media/1.gif'></img>";
 
-    let img2 = () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          mainContainer.innerHTML = "<img src='media/2.gif'></img>";
-          resolve();
-        }, 3000);
-      });
-
-    let img3 = () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          mainContainer.innerHTML = "<img src='media/3.gif'></img>";
-          resolve();
-        }, 2000);
-      });
-
-    let img4 = () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          mainContainer.innerHTML = "<img src='media/4.gif'></img>";
-          resolve();
-        }, 4000);
-      });
-
-    let img5 = () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          mainContainer.innerHTML = "<img src='media/5.gif'></img>";
-          resolve();
-        }, 2000);
-      });
+    let img2 = () => new Promise(resolve => {
+      setTimeout(() => {
+        mainContainer.innerHTML = "<img src='media/2.gif'></img>";
+        resolve();
+      }, 3000);
+    });
+  
+    let img3 = () => new Promise(resolve => {
+      setTimeout(() => {
+        mainContainer.innerHTML = "<img src='media/3.gif'></img>";
+        resolve();
+      }, 2000);
+    });
+  
+    let img4 = () => new Promise(resolve => {
+      setTimeout(() => {
+        mainContainer.innerHTML = "<img src='media/4.gif'></img>";
+        resolve();
+      }, 2000);
+    });
+  
+    let img5 = () => new Promise(resolve => {
+      setTimeout(() => {
+        mainContainer.innerHTML = "<img src='media/5.gif'></img>";
+        resolve();
+      }, 2000);
+    });
 
     await img2();
     await img3();
     await img5();
     await img4();
+  }
 
-    loadTheUserDetails();
-  };
-
-  let loadTheUserDetails = () => {
-    let mainContainer = document.getElementById("mainContainer");
-  };
-
-  // loadTheUserDetails();
+  // startThePrank();
 };
+
 
 hackingPrank();
