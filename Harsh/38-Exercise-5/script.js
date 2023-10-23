@@ -83,12 +83,12 @@ let hackingPrank = async () => {
 
   let updateProgressBar = () =>
     new Promise((resolve) => {
-      let i = 0;
-      let progressUpdationInterval = setInterval(() => {
+      let i = -1;
+      let progressUpdationInterval = setInterval(async() => {
         document.querySelector("div.progress-bar").style["width"] = `${
-          i++ + 1
+          ++i + 1
         }%`;
-        if (i >= 100) {
+        if (i >= 100 ) {
           clearInterval(progressUpdationInterval);
           resolve(); // Resolve when the progress is complete
         }
