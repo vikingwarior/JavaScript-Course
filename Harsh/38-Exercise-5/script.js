@@ -75,10 +75,10 @@ let hackingPrank = async () => {
     startThePrank();
   };
 
-  let renderProgressBar = async () => {
+  let renderProgressBar = () => {
     document.getElementById("mainContainer").innerHTML +=
       '<div class="progress" role="progressbar"><div class="progress-bar bg-info" style="width: 0%"></div></div>';
-    await updateProgressBar();
+    return updateProgressBar();
   };
 
   let updateProgressBar = () =>
