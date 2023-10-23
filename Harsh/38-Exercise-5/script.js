@@ -79,19 +79,21 @@ let hackingPrank = async () => {
     document.getElementById("mainContainer").innerHTML +=
       '<div class="progress" role="progressbar"><div class="progress-bar bg-info" style="width: 0%"></div></div>';
     await updateProgressBar();
-    resolve();
   };
 
-  let updateProgressBar = async () => {
-    let i = 0;
-    let progressUpdationInterval = setInterval(() => {
-      document.querySelector("div.progress-bar").style["width"] = `${i++ + 1}%`;
-      if (i >= 100) {
-        clearInterval(progressUpdationInterval);
-      }
-    }, 50);
-    resolve();
-  };
+  let updateProgressBar = () =>
+    new Promise((resolve) => {
+      let i = 0;
+      let progressUpdationInterval = setInterval(() => {
+        document.querySelector("div.progress-bar").style["width"] = `${
+          i++ + 1
+        }%`;
+        if (i >= 100) {
+          clearInterval(progressUpdationInterval);
+          resolve(); // Resolve when the progress is complete
+        }
+      }, 50);
+    });
 
   let startThePrank = async () => {
     let mainContainer = document.getElementById("mainContainer");
