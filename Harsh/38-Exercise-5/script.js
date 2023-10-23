@@ -1,18 +1,3 @@
-// let apiKey = "02f21d68-af54-409a-98fe-8c4b7b99e2ab";
-// url = `https://api-bdc.net/data/ip-geolocation?ip=165.225.120.149&localityLanguage=en&key=${apiKey}`;
-
-// response = fetch(url).then((response) => {
-//   // Check if the request was successful (status code 200)
-//   if (!response.ok) {
-//     throw new Error(`HTTP error! Status: ${response.status}`);
-//   }
-
-//   // Parse the JSON in the response
-//   return response.json();
-// });
-
-// console.log(response);
-
 let hackingPrank = async () => {
   // Pass the array of sentenes that you want Render text inside also pass the container id in which the messages should be rendered
   let RenderText = async (
@@ -61,18 +46,11 @@ let hackingPrank = async () => {
     connectBtn.addEventListener("click", () => renderLoadingScreen());
   };
 
-  let introTxt = [
-    "Welcome my Friend",
-    "Click here to connect with Wi-Fi",
-    "👇",
-  ];
-
-  await renderLandingPage(introTxt);
-
   let renderLoadingScreen = async () => {
     await RenderText(["Connecting to Wi-Fi"]);
     await renderProgressBar();
-    startThePrank();
+    await startThePrank();
+    renderConsoleInterface();
   };
 
   let renderProgressBar = () => {
@@ -84,11 +62,11 @@ let hackingPrank = async () => {
   let updateProgressBar = () =>
     new Promise((resolve) => {
       let i = -1;
-      let progressUpdationInterval = setInterval(async() => {
+      let progressUpdationInterval = setInterval(async () => {
         document.querySelector("div.progress-bar").style["width"] = `${
           ++i + 1
         }%`;
-        if (i >= 100 ) {
+        if (i >= 100) {
           clearInterval(progressUpdationInterval);
           resolve(); // Resolve when the progress is complete
         }
@@ -135,9 +113,37 @@ let hackingPrank = async () => {
     await img3();
     await img5();
     await img4();
+  
   };
 
-  // startThePrank();
+  let fetchUserDetails = async () => {
+    let apiKey = "bdc_8ae05a7492c64933ab7b03ac107cf100";
+    let url = `https://api-bdc.net/data/ip-geolocation?ip=165.225.120.149&localityLanguage=en&key=${apiKey}`;
+
+    let UserData = fetch(url).then((UserData) => {
+      // Check if the request was successful (status code 200)
+      if (!UserData.ok) {
+        throw new Error(`HTTP error! Status: ${UserData.status}`);
+      }
+
+      // Parse the JSON in the UserData
+      return UserData.json();
+    });
+    return UserData;
+  };
+
+  // fetchUserDetails();
+
+  let intit = async () => {
+    let introTxt = [
+      "Welcome my Friend",
+      "Click here to connect with Wi-Fi",
+      "👇",
+    ];
+    await renderLandingPage(introTxt);
+  } 
+
+  intit();
 };
 
 hackingPrank();
