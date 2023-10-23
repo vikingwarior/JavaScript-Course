@@ -113,7 +113,6 @@ let hackingPrank = async () => {
     await img3();
     await img5();
     await img4();
-  
   };
 
   let fetchUserDetails = async () => {
@@ -134,6 +133,52 @@ let hackingPrank = async () => {
 
   // fetchUserDetails();
 
+  let renderConsoleInterface = async () => {
+    const commandArray = [
+      "git init",
+      "git add .",
+      "git commit -m 'Initial commit'",
+      "git remote add origin https://github.com/yourusername/your-repo.git",
+      "git push -u origin master",
+      "echo 'Git Bash-like UI created!'",
+    ];
+
+    let createDivForTerminal = () => {
+      document.getElementById("mainContainer").innerHTML =
+        '<div id="terminal"></div>';
+    };
+
+    createDivForTerminal();
+    const terminal = document.getElementById("terminal");
+
+    const renderCommand = async (command) => {
+      for (let i = 0; i < command.length; i++) {
+        terminal.innerHTML += command.charAt(i);
+        await sleep(50); // Adjust typing speed (milliseconds)
+      }
+      terminal.innerHTML += "<br>";
+    };
+  
+    const executeCommands = async () => {
+      for (const command of commandArray) {
+        await renderCommand(command);
+      }
+      renderCursor();
+    };
+  
+    const renderCursor = () => {
+      const cursor = document.createElement("span");
+      cursor.className = "cursor";
+      terminal.appendChild(cursor);
+    };
+  
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+  
+    executeCommands()
+  };
+
+  renderConsoleInterface();
+
   let intit = async () => {
     let introTxt = [
       "Welcome my Friend",
@@ -141,9 +186,9 @@ let hackingPrank = async () => {
       "👇",
     ];
     await renderLandingPage(introTxt);
-  } 
+  };
 
-  intit();
+  // intit();
 };
 
 hackingPrank();

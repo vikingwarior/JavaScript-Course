@@ -33,8 +33,8 @@
 }
 
 img {
- width : 100%;
- height: 100%; 
+  width: 100%;
+  height: 100%;
 }
 
 #mainContainer {
@@ -45,4 +45,30 @@ img {
   margin-left: 30%;
   margin-top: 1.25rem;
   width: 40%;
+}
+
+#terminal {
+  height: 100vh;
+  text-align: left;
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  padding: 20px;
+  color: #00ff00;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  position: relative;
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  background-color: #00ff00;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
