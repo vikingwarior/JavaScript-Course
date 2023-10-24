@@ -136,16 +136,11 @@ let hackingPrank = async () => {
   let renderConsoleInterface = async () => {
     const commandArray = [
       "git init",
-      "git add .",
-      "git commit -m 'Initial commit'",
-      "git remote add origin https://github.com/yourusername/your-repo.git",
-      "git push -u origin master",
-      "echo 'Git Bash-like UI created!'",
     ];
 
     let createDivForTerminal = () => {
       document.getElementById("mainContainer").innerHTML =
-        '<div id="terminal"></div>';
+        `<div style="font-color: red;"></div><div id="terminal"></div>`;
     };
 
     createDivForTerminal();
