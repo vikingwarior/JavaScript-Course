@@ -3,6 +3,21 @@
   color: #ffffff8e;
   font-size: 1.5rem;
   text-align: center;
+  size: 100vh;
+}
+
+.doller{
+  font-size: 0.75rem;
+}
+
+.FinalHeading{
+  text-align: left;
+  color: rgb(170, 43, 43);
+  padding-bottom: 17px;
+}
+
+#gifDiv{
+ width: 75%;
 }
 
 #highlighted-elem {
@@ -38,7 +53,7 @@ img {
 }
 
 #mainContainer {
-  /* margin-top: 25vh; */
+  margin-top: 25vh;
 }
 
 .progress {
@@ -48,7 +63,6 @@ img {
 }
 
 #terminal {
-  height: 100vh;
   text-align: left;
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
