@@ -94,8 +94,8 @@ let hackingPrank = async () => {
 
     let img4 = () =>
       new Promise((resolve) => {
-          mainContainer.innerHTML = "<img src='media/4.gif'></img>";
-          resolve();
+        mainContainer.innerHTML = "<img src='media/4.gif'></img>";
+        resolve();
       });
 
     let img5 = () =>
@@ -132,255 +132,265 @@ let hackingPrank = async () => {
   // fetchUserDetails();
 
   let renderConsoleInterface = async () => {
-    // let UserData = await fetchUserDetails();
-    let UserData = {
-      ip: "165.225.120.149",
-      localityLanguageRequested: "en",
-      isReachableGlobally: true,
-      country: {
-        isoAlpha2: "IN",
-        isoAlpha3: "IND",
-        m49Code: 356,
-        name: "India",
-        isoName: "India",
-        isoNameFull: "the Republic of India",
-        isoAdminLanguages: [
-          {
-            isoAlpha3: "eng",
-            isoAlpha2: "en",
-            isoName: "English",
-            nativeName: "English",
-          },
-          {
-            isoAlpha3: "hin",
-            isoAlpha2: "hi",
-            isoName: "Hindi",
-            nativeName: "हिन्दी",
-          },
-        ],
-        unRegion: "Central and Southern Asia/Southern Asia",
-        currency: {
-          numericCode: 356,
-          code: "INR",
-          name: "Indian Rupee",
-          minorUnits: 2,
-        },
-        wbRegion: {
-          id: "SAS",
-          iso2Code: "8S",
-          value: "South Asia",
-        },
-        wbIncomeLevel: {
-          id: "LMC",
-          iso2Code: "XN",
-          value: "Lower middle income",
-        },
-        callingCode: "91",
-        countryFlagEmoji: "🇮🇳",
-        wikidataId: "Q668",
-        geonameId: 1269750,
-        isIndependent: true,
-      },
-      location: {
-        principalSubdivision: "Maharashtra",
-        isoPrincipalSubdivision: "Mahārāshtra",
-        isoPrincipalSubdivisionCode: "IN-MH",
-        continent: "Asia",
-        continentCode: "AS",
-        city: "Sirur",
-        localityName: "Sirur",
-        postcode: "",
-        latitude: 18.78,
-        longitude: 74.26,
-        plusCode: "7JCPQ7J6+22",
-        timeZone: {
-          ianaTimeId: "Asia/Kolkata",
-          displayName: "(UTC+05:30) India Standard Time (Kolkata)",
-          effectiveTimeZoneFull: "India Standard Time",
-          effectiveTimeZoneShort: "IST",
-          utcOffsetSeconds: 19800,
-          utcOffset: "+05:30",
-          isDaylightSavingTime: false,
-          localTime: "2023-10-24T00:49:49.2702156",
-        },
-        localityInfo: {
-          administrative: [
-            {
-              name: "India",
-              description: "country in South Asia",
-              isoName: "India",
-              order: 3,
-              adminLevel: 2,
-              isoCode: "IN",
-              wikidataId: "Q668",
-              geonameId: 1269750,
-            },
-            {
-              name: "Maharashtra",
-              description:
-                "state in the western and central peninsular region of India",
-              isoName: "Maharashtra",
-              order: 6,
-              adminLevel: 4,
-              isoCode: "IN-MH",
-              wikidataId: "Q1191",
-              geonameId: 1264418,
-            },
-            {
-              name: "Pune district",
-              description: "district of Maharashtra, India",
-              order: 9,
-              adminLevel: 5,
-              wikidataId: "Q1797336",
-              geonameId: 1259230,
-            },
-            {
-              name: "Pune Metropolitan Region",
-              description: "human settlement in India",
-              order: 10,
-              adminLevel: 7,
-              wikidataId: "Q7260110",
-            },
-            {
-              name: "Sirur",
-              description: "human settlement",
-              order: 11,
-              adminLevel: 6,
-              wikidataId: "Q1592000",
-              geonameId: 1256025,
-            },
-          ],
-          informative: [
-            {
-              name: "Asia",
-              description: "continent",
-              isoName: "Asia",
-              order: 1,
-              isoCode: "AS",
-              wikidataId: "Q48",
-              geonameId: 6255147,
-            },
-            {
-              name: "Asia/Kolkata",
-              description: "time zone",
-              order: 2,
-            },
-            {
-              name: "Indian subcontinent",
-              description: "physiographical region in South Asia",
-              order: 4,
-              wikidataId: "Q60140",
-              geonameId: 6269134,
-            },
-            {
-              name: "Western Zonal Council",
-              order: 5,
-            },
-            {
-              name: "Krishna river basin",
-              order: 7,
-            },
-            {
-              name: "Central Railway",
-              order: 8,
-            },
-          ],
-        },
-      },
-      lastUpdated: "2023-10-23T00:13:15.0691528Z",
-      network: {
-        registry: "ARIN",
-        registryStatus: "assigned",
-        registeredCountry: "IN",
-        registeredCountryName: "India",
-        organisation: "Zscaler Softech India Private Limited",
-        isReachableGlobally: true,
-        isBogon: false,
-        bgpPrefix: "165.225.120.0/24",
-        bgpPrefixNetworkAddress: "165.225.120.0",
-        bgpPrefixLastAddress: "165.225.120.255",
-        totalAddresses: 256,
-        carriers: [
-          {
-            asn: "AS53813",
-            asnNumeric: 53813,
-            organisation: "ZSCALER, INC.",
-            name: "ZSCALER-INC",
-            registry: "Arin",
-            registeredCountry: "US",
-            registeredCountryName: "United States of America (the)",
-            registrationDate: "2011-06-03",
-            registrationLastChange: "2013-04-23",
-            totalIpv4Addresses: 30659,
-            totalIpv4Prefixes: 79,
-            totalIpv4BogonPrefixes: 0,
-            totalIpv6Prefixes: 12,
-            totalIpv6BogonPrefixes: 0,
-            rank: 5281,
-            rankText: "#5,281 out of 76,384",
-          },
-        ],
-        viaCarriers: [
-          {
-            asn: "AS9498",
-            asnNumeric: 9498,
-            organisation: "Bharti Airtel Limited",
-            name: "BBIL-AP",
-            registry: "Apnic",
-            registeredCountry: "IN",
-            registeredCountryName: "India",
-            totalIpv4Addresses: 1790802,
-            rank: 240,
-            rankText: "#240 out of 76,384",
-          },
-          {
-            asn: "AS55410",
-            asnNumeric: 55410,
-            organisation: "Vodafone Idea Ltd. (VIL)",
-            name: "VIL-AS-AP",
-            registry: "Apnic",
-            registeredCountry: "IN",
-            registeredCountryName: "India",
-            totalIpv4Addresses: 254703,
-            rank: 970,
-            rankText: "#970 out of 76,384",
-          },
-          {
-            asn: "AS9583",
-            asnNumeric: 9583,
-            organisation: "Sify Limited ISP in India",
-            name: "SIFY-AS-IN",
-            registry: "Apnic",
-            registeredCountry: "IN",
-            registeredCountryName: "India",
-            totalIpv4Addresses: 638908,
-            rank: 512,
-            rankText: "#512 out of 76,384",
-          },
-          {
-            asn: "AS49544",
-            asnNumeric: 49544,
-            organisation: "i3D.net B.V",
-            name: "i3Dnet",
-            registry: "Ripe",
-            registeredCountry: "NL",
-            registeredCountryName: "Netherlands (the)",
-            totalIpv4Addresses: 99450,
-            rank: 1953,
-            rankText: "#1,953 out of 76,384",
-          },
-        ],
-      },
+    let UserData;
+
+    let storeUserData = async () => {
+      return new Promise((resolve) => {
+        setTimeout(async () => {
+          UserData = await fetchUserDetails();
+          // UserData = {
+          //   ip: "165.225.120.149",
+          //   localityLanguageRequested: "en",
+          //   isReachableGlobally: true,
+          //   country: {
+          //     isoAlpha2: "IN",
+          //     isoAlpha3: "IND",
+          //     m49Code: 356,
+          //     name: "India",
+          //     isoName: "India",
+          //     isoNameFull: "the Republic of India",
+          //     isoAdminLanguages: [
+          //       {
+          //         isoAlpha3: "eng",
+          //         isoAlpha2: "en",
+          //         isoName: "English",
+          //         nativeName: "English",
+          //       },
+          //       {
+          //         isoAlpha3: "hin",
+          //         isoAlpha2: "hi",
+          //         isoName: "Hindi",
+          //         nativeName: "हिन्दी",
+          //       },
+          //     ],
+          //     unRegion: "Central and Southern Asia/Southern Asia",
+          //     currency: {
+          //       numericCode: 356,
+          //       code: "INR",
+          //       name: "Indian Rupee",
+          //       minorUnits: 2,
+          //     },
+          //     wbRegion: {
+          //       id: "SAS",
+          //       iso2Code: "8S",
+          //       value: "South Asia",
+          //     },
+          //     wbIncomeLevel: {
+          //       id: "LMC",
+          //       iso2Code: "XN",
+          //       value: "Lower middle income",
+          //     },
+          //     callingCode: "91",
+          //     countryFlagEmoji: "🇮🇳",
+          //     wikidataId: "Q668",
+          //     geonameId: 1269750,
+          //     isIndependent: true,
+          //   },
+          //   location: {
+          //     principalSubdivision: "Maharashtra",
+          //     isoPrincipalSubdivision: "Mahārāshtra",
+          //     isoPrincipalSubdivisionCode: "IN-MH",
+          //     continent: "Asia",
+          //     continentCode: "AS",
+          //     city: "Sirur",
+          //     localityName: "Sirur",
+          //     postcode: "",
+          //     latitude: 18.78,
+          //     longitude: 74.26,
+          //     plusCode: "7JCPQ7J6+22",
+          //     timeZone: {
+          //       ianaTimeId: "Asia/Kolkata",
+          //       displayName: "(UTC+05:30) India Standard Time (Kolkata)",
+          //       effectiveTimeZoneFull: "India Standard Time",
+          //       effectiveTimeZoneShort: "IST",
+          //       utcOffsetSeconds: 19800,
+          //       utcOffset: "+05:30",
+          //       isDaylightSavingTime: false,
+          //       localTime: "2023-10-24T00:49:49.2702156",
+          //     },
+          //     localityInfo: {
+          //       administrative: [
+          //         {
+          //           name: "India",
+          //           description: "country in South Asia",
+          //           isoName: "India",
+          //           order: 3,
+          //           adminLevel: 2,
+          //           isoCode: "IN",
+          //           wikidataId: "Q668",
+          //           geonameId: 1269750,
+          //         },
+          //         {
+          //           name: "Maharashtra",
+          //           description:
+          //             "state in the western and central peninsular region of India",
+          //           isoName: "Maharashtra",
+          //           order: 6,
+          //           adminLevel: 4,
+          //           isoCode: "IN-MH",
+          //           wikidataId: "Q1191",
+          //           geonameId: 1264418,
+          //         },
+          //         {
+          //           name: "Pune district",
+          //           description: "district of Maharashtra, India",
+          //           order: 9,
+          //           adminLevel: 5,
+          //           wikidataId: "Q1797336",
+          //           geonameId: 1259230,
+          //         },
+          //         {
+          //           name: "Pune Metropolitan Region",
+          //           description: "human settlement in India",
+          //           order: 10,
+          //           adminLevel: 7,
+          //           wikidataId: "Q7260110",
+          //         },
+          //         {
+          //           name: "Sirur",
+          //           description: "human settlement",
+          //           order: 11,
+          //           adminLevel: 6,
+          //           wikidataId: "Q1592000",
+          //           geonameId: 1256025,
+          //         },
+          //       ],
+          //       informative: [
+          //         {
+          //           name: "Asia",
+          //           description: "continent",
+          //           isoName: "Asia",
+          //           order: 1,
+          //           isoCode: "AS",
+          //           wikidataId: "Q48",
+          //           geonameId: 6255147,
+          //         },
+          //         {
+          //           name: "Asia/Kolkata",
+          //           description: "time zone",
+          //           order: 2,
+          //         },
+          //         {
+          //           name: "Indian subcontinent",
+          //           description: "physiographical region in South Asia",
+          //           order: 4,
+          //           wikidataId: "Q60140",
+          //           geonameId: 6269134,
+          //         },
+          //         {
+          //           name: "Western Zonal Council",
+          //           order: 5,
+          //         },
+          //         {
+          //           name: "Krishna river basin",
+          //           order: 7,
+          //         },
+          //         {
+          //           name: "Central Railway",
+          //           order: 8,
+          //         },
+          //       ],
+          //     },
+          //   },
+          //   lastUpdated: "2023-10-23T00:13:15.0691528Z",
+          //   network: {
+          //     registry: "ARIN",
+          //     registryStatus: "assigned",
+          //     registeredCountry: "IN",
+          //     registeredCountryName: "India",
+          //     organisation: "Zscaler Softech India Private Limited",
+          //     isReachableGlobally: true,
+          //     isBogon: false,
+          //     bgpPrefix: "165.225.120.0/24",
+          //     bgpPrefixNetworkAddress: "165.225.120.0",
+          //     bgpPrefixLastAddress: "165.225.120.255",
+          //     totalAddresses: 256,
+          //     carriers: [
+          //       {
+          //         asn: "AS53813",
+          //         asnNumeric: 53813,
+          //         organisation: "ZSCALER, INC.",
+          //         name: "ZSCALER-INC",
+          //         registry: "Arin",
+          //         registeredCountry: "US",
+          //         registeredCountryName: "United States of America (the)",
+          //         registrationDate: "2011-06-03",
+          //         registrationLastChange: "2013-04-23",
+          //         totalIpv4Addresses: 30659,
+          //         totalIpv4Prefixes: 79,
+          //         totalIpv4BogonPrefixes: 0,
+          //         totalIpv6Prefixes: 12,
+          //         totalIpv6BogonPrefixes: 0,
+          //         rank: 5281,
+          //         rankText: "#5,281 out of 76,384",
+          //       },
+          //     ],
+          //     viaCarriers: [
+          //       {
+          //         asn: "AS9498",
+          //         asnNumeric: 9498,
+          //         organisation: "Bharti Airtel Limited",
+          //         name: "BBIL-AP",
+          //         registry: "Apnic",
+          //         registeredCountry: "IN",
+          //         registeredCountryName: "India",
+          //         totalIpv4Addresses: 1790802,
+          //         rank: 240,
+          //         rankText: "#240 out of 76,384",
+          //       },
+          //       {
+          //         asn: "AS55410",
+          //         asnNumeric: 55410,
+          //         organisation: "Vodafone Idea Ltd. (VIL)",
+          //         name: "VIL-AS-AP",
+          //         registry: "Apnic",
+          //         registeredCountry: "IN",
+          //         registeredCountryName: "India",
+          //         totalIpv4Addresses: 254703,
+          //         rank: 970,
+          //         rankText: "#970 out of 76,384",
+          //       },
+          //       {
+          //         asn: "AS9583",
+          //         asnNumeric: 9583,
+          //         organisation: "Sify Limited ISP in India",
+          //         name: "SIFY-AS-IN",
+          //         registry: "Apnic",
+          //         registeredCountry: "IN",
+          //         registeredCountryName: "India",
+          //         totalIpv4Addresses: 638908,
+          //         rank: 512,
+          //         rankText: "#512 out of 76,384",
+          //       },
+          //       {
+          //         asn: "AS49544",
+          //         asnNumeric: 49544,
+          //         organisation: "i3D.net B.V",
+          //         name: "i3Dnet",
+          //         registry: "Ripe",
+          //         registeredCountry: "NL",
+          //         registeredCountryName: "Netherlands (the)",
+          //         totalIpv4Addresses: 99450,
+          //         rank: 1953,
+          //         rankText: "#1,953 out of 76,384",
+          //       },
+          //     ],
+          //   },
+          // };
+          resolve();
+        }, 3000);
+      });
     };
 
-    document.getElementById('mainContainer').style[`marginTop`] = 0;
+    await storeUserData();
+
+    document.getElementById("mainContainer").style[`marginTop`] = 0;
 
     const userCountry = UserData.location.localityInfo.administrative[0].name;
     const userState = UserData.location.localityInfo.administrative[1].name;
     const userCity = UserData.location.localityInfo.administrative[2].name;
     const userIp = UserData.ip;
     const userCarrier = UserData.network.viaCarriers[0].organisation;
-
 
     const commandArray = [
       `intercepting your IP address....`,
@@ -400,7 +410,6 @@ let hackingPrank = async () => {
       `$Area: ${userCity}`,
       `$State: ${userState}`,
       `$Country: ${userCountry}`,
-
     ];
 
     let createDivForTerminal = () => {
@@ -413,10 +422,20 @@ let hackingPrank = async () => {
     const terminal = document.getElementById("terminal");
 
     const renderCommand = async (command) => {
-      for (let i = 0; i < command.length; i++) {
-        terminal.innerHTML += command.charAt(i);
-        await sleep(50); // Adjust typing speed (milliseconds)
+      if (command.charAt(0) == `$`) {
+        let doller = `<span class='doller'>$</span>`
+        terminal.innerHTML += doller;
+        for (let i = 1; i < command.length; i++) {
+          terminal.innerHTML += command.charAt(i);
+          await sleep(50); // Adjust typing speed (milliseconds)
+        }
+      }else{
+        for (let i = 0; i < command.length; i++) {
+          terminal.innerHTML += command.charAt(i);
+          await sleep(50); // Adjust typing speed (milliseconds)
+        }
       }
+      
       terminal.innerHTML += "<br>";
     };
 
@@ -442,7 +461,7 @@ let hackingPrank = async () => {
 
   let intit = async () => {
     let introTxt = [
-      "Welcome my Friend",
+      "Welcome!",
       "Click here to connect with Wi-Fi",
       "👇",
     ];
