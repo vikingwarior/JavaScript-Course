@@ -129,7 +129,6 @@ let hackingPrank = async () => {
     return UserData;
   };
 
-  // fetchUserDetails();
 
   let renderConsoleInterface = async () => {
     let UserData;
@@ -456,8 +455,6 @@ let hackingPrank = async () => {
 
     executeCommands();
   };
-
-  // renderConsoleInterface();
 
   let intit = async () => {
     let introTxt = [
