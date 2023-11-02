@@ -3,7 +3,7 @@
  * 
  * NOTE ->
  * The desired value is often encapsulated inside the response body that contains the status of the request. To extract the desired value, response.json() Needs to be fetched.
- * Retriving the promise from the fetch() is 2 stage process
+ * Retriving the promise from the fetch() is 2 stage process.
  */
 
 let fetchAPI = async () => {
