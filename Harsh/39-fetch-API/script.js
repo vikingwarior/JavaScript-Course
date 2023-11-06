@@ -30,19 +30,21 @@ fetchAPIGet();
 
 let fetchAPIPost = async () => {
   let response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
+  // Type of Request 
+  method: "POST",
+    // Data to be sent via the request
     body: JSON.stringify({
       title: "Fetch API Post",
       body: "Request Body",
       userId: 1,
     }),
+    // Defines the structure, encoding and type of content that will be sent via the server
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
   })
 
-  response = response.json();
-  console.log(response);
+  console.log(response.json());
     
 };
 
