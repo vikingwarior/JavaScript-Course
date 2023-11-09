@@ -35,6 +35,7 @@ let fetchAPIPost = async () => {
     // Data to be sent via the request
     body: JSON.stringify({
       title: "Fetch API Post",
+      //Actual JSON data
       body: "Request Body",
       userId: 1,
     }),
