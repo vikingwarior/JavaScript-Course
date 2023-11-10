@@ -1,5 +1,5 @@
 /**
- * Cookies -> key-value pair seperated by a dash([KEY]-[VALUE]) stored in a browser which are seperated from other cookies by semicolon(;). 
+ * Cookies -> name-value pair seperated by a dash([KEY]-[VALUE]) stored in a browser which are seperated from other cookies by semicolon(;). 
  */
 
 // To view cookies currently present inside the browser for a given web-page document.cookie can be used.
@@ -19,3 +19,9 @@ console.log(document.cookie);
 document.cookie = encodeURIComponent(`"SpecialcookieInsertion"="name"`);
 
 console.log(document.cookie);
+
+// Only a single cookie can be assigned to at a time, if we try to append more than one cookie, everything followed by first semicolon(;) is considered as an optional attribute(properties) for the cookie. For example:
+
+document.cookie = "a=b; c=d; e=f" // The JavaScript engine will consider everything after a=b; i.e. c=d; and e=f as an option for a=b
+
+// Size of name=value pair cannot cannot exceed 20kb for one cookie
