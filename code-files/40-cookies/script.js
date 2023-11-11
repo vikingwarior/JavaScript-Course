@@ -25,3 +25,5 @@ console.log(document.cookie);
 document.cookie = "a=b; c=d; e=f" // The JavaScript engine will consider everything after a=b; i.e. c=d; and e=f as an option for a=b
 
 // Size of name=value pair cannot cannot exceed 20kb for one cookie
+
+// Cookies are sent to the server of the website in every request
