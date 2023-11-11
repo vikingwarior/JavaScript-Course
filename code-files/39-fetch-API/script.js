@@ -15,6 +15,7 @@ let fetchAPIGet = async () => {
   let response = await fetch(
     `https://api.oceandrivers.com/v1.0/getWeatherDisplay/pune/?period=latestdata`
   );
+  console.log(response);
   let result = response.json();
   console.log(result);
 };
