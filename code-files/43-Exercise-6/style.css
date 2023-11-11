@@ -6,6 +6,10 @@
   height: 100vh;
 }
 
+.list-group{
+  width: 70%;
+}
+
 #highlighted-elem {
   color: red;
   background-color: blanchedalmond;
