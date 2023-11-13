@@ -8,45 +8,65 @@ const createBtn = (btnLabel) => {
   return btn;
 };
 
-const createListItem = (taskName=null, taskType=null, addButton = false) => {
-    let listItemContainer = document.createElement(`div`);
-    listItemContainer.classList = `listItemContainer`;
+const createCheckbox = () => {
+  let checkBox = document.createElement(`input`);
+  checkBox.type = `checkbox`;
+  checkBox.classList = `form-check-input me-1`;
 
-    let listItem = document.createElement(`li`);
-    listItem.classList = `list-group-item d-flex align-items-center`;
+  return checkBox;
+};
+
+const createTasklabel = (labelName) => {
+  label = document.createElement(`label`);
+  label.classList = `form-check-label`;
+  label.innerHTML = `<s>${labelName}</s>` ? labelName : taskType == `completed`;
+
+  return label;
+};
+
+const newTaskInput = () => {
+  console.log(`lol`);
+  let lastListItem = document.getElementById(`last`);
+  lastListItem.removeAttribute(`id`);
+
+  let addBtn = lastListItem.querySelector(`button`);
+  lastListItem.removeChild(addBtn);
+
+  let taskTextBox = createListItem();
+  taskTextBox.id = `last`;
+
+  lastListItem.insertAdjacentElement(`afterend`, taskTextBox);
+};
+
+const createListItem = (
+  taskName = null,
+  taskType = null,
+  addButton = false
+) => {
+  let listItemContainer = document.createElement(`div`);
+  listItemContainer.classList = `listItemContainer`;
+
+  let listItem = document.createElement(`li`);
+  listItem.classList = `list-group-item d-flex align-items-center`;
 
   if (taskName != null) {
-    let checkBox = document.createElement(`input`);
-    checkBox.type = `checkbox`;
-    checkBox.classList = `form-check-input me-1`;
-
-    let taskLabel = document.createElement(`label`);
-    taskLabel.classList = `form-check-label`;
-    taskLabel.innerHTML = `<s>${taskName}</s>`
-      ? taskName
-      : taskType == `completed`;
-
-    listItemContainer.appendChild(checkBox);
-    listItemContainer.appendChild(taskLabel);
+    listItemContainer.appendChild(createCheckbox());
+    listItemContainer.appendChild(createTasklabel(taskName));
     listItem.appendChild(listItemContainer);
 
     if (addButton) {
-      let newTaskBtn = createBtn(`+`);
-      newTaskBtn.addEventListener(`click`, () => {
-        let lastListItem = document.getElementById(`last`);
-        lastListItem.removeAttribute(`id`);
-        lastListItem.insertAdjacentElement(`afterend`, createListItem());
-      });  
-      listItem.appendChild(createBtn(`+`));
       listItem.id = `last`;
+
+      let newTaskBtn = createBtn(`+`);
+      newTaskBtn.addEventListener(`click`, () => newTaskInput());
+      listItem.appendChild(newTaskBtn);
     }
   } else {
-    listItemContainer.innerHTML = `<input class="form-control form-control border border-info border-0" type="text"
+    listItem.innerHTML = `<input class="form-control form-control border border-info border-0" type="text"
     placeholder="Add your Task">`;
-    listItem.appendChild(listItemContainer);
-    listItem.appendChild(createBtn(`ü`))
+    listItem.appendChild(createBtn(`add`));
   }
-  
+
   return listItem;
 };
 
@@ -73,4 +93,4 @@ let completedListContainer =
   document.getElementsByClassName(`completedList`)[0];
 
 toDolistContainer.appendChild(createTasksTable(toDoTasks, `toDo`));
-toDolistContainer.appendChild(createListItem());
+// toDolistContainer.appendChild(createListItem());
