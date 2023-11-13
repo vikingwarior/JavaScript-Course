@@ -11,27 +11,54 @@
 </head>
 
 <body>
-  <div class="toDoList d-flex flex-column justify-content-center align-items-center">
-    <ul class="nav nav-pills my-4">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
+  <div class="tabs d-flex flex-column justify-content-center align-items-center">
+    <ul class="nav nav-pills my-4 ">
+      <li class="toDo nav-item">
+        <a class="nav-link active" href="#">To Do</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="completed nav-item">
+        <a class="nav-link" href="#">Completed</a>
       </li>
     </ul>
-
+  </div>
+  <div class="toDoList d-flex flex-column justify-content-center align-items-center">
     <ul class="list-group">
-      <li class="list-group-item">
-        <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
-        <label class="form-check-label justify-content-between">First checkbox
-          <button type="button" class="btn btn-outline-primary ms-auto">+</button>
-        </label>
+      <li class="list-group-item d-flex align-items-center">
+        <div class="listItemContainer">
+          <input class="form-check-input me-1" type="checkbox" value="" id="p1">
+          <label class="form-check-label">First checkbox</label>
+        </div>
       </li>
 
-      <li class="list-group-item">
-        <input class="form-control form-control-lg border border-primary border-0 border-bottom border-1" type="text"
-          placeholder="Default input">
+      <li class="list-group-item d-flex align-items-center">
+        <div class="listItemContainer">
+          <input class="form-check-input me-1 checked" type="checkbox" value="" id="p2">
+          <label class="form-check-label">Second checkbox</label>
+        </div>
+        <button type="button" class="btn btn-outline-primary rounded-circle border btn-outline-info border-0 ms-auto">+</button>
+      </li>
+
+      <li class="list-group-item d-flex align-items-center">
+        <input class="form-control form-control border border-info border-0" type="text"
+          placeholder="Add your Task">
+
+      </li>
+    </ul>
+  </div>
+  <div class="completedList d-flex flex-column justify-content-center align-items-center">
+    <ul class="list-group">
+      <li class="list-group-item d-flex align-items-center">
+        <div class="listItemContainer">
+          <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox" checked>
+          <label class="form-check-label"><s>First checkbox</s></label>
+        </div>
+      </li>
+
+      <li class="list-group-item d-flex align-items-center">
+        <div>
+          <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox" checked>
+          <label class="form-check-label"><s>Second checkbox</s></label>
+        </div>
       </li>
     </ul>
   </div>

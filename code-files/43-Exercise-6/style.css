@@ -2,12 +2,12 @@
   font-size: 1.5rem;
 }
 
-.toDoList{
-  height: 100vh;
+body{
+  height: 100vh
 }
 
 .list-group{
-  width: 70%;
+  width: 80%;
 }
 
 #highlighted-elem {
