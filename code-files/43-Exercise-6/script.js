@@ -24,18 +24,19 @@ const createTasklabel = (labelName) => {
   return label;
 };
 
-const newTaskInput = () => {
-  console.log(`lol`);
+const addDynamicTableEntry = (newTaskLabel = null) => {
   let lastListItem = document.getElementById(`last`);
   lastListItem.removeAttribute(`id`);
 
   let addBtn = lastListItem.querySelector(`button`);
   lastListItem.removeChild(addBtn);
 
-  let taskTextBox = createListItem();
-  taskTextBox.id = `last`;
+  let dynamicListItem = createListItem()?createListItem(newTaskLabel,`toDo`,true): newTaskLabel == null;
+  dynamicListItem.id = `last`;
 
-  lastListItem.insertAdjacentElement(`afterend`, taskTextBox);
+  lastListItem.insertAdjacentElement(`afterend`, dynamicListItem);
+
+if (lastListItem.querySelector('input[type="text"]') !== null) lastListItem.remove();
 };
 
 const createListItem = (
@@ -58,13 +59,17 @@ const createListItem = (
       listItem.id = `last`;
 
       let newTaskBtn = createBtn(`+`);
-      newTaskBtn.addEventListener(`click`, () => newTaskInput());
+      newTaskBtn.addEventListener(`click`, () => addDynamicTableEntry());
       listItem.appendChild(newTaskBtn);
     }
   } else {
-    listItem.innerHTML = `<input class="form-control form-control border border-info border-0" type="text"
+    listItem.innerHTML = `<input class="form-control form-control border border-info border-0" type="text" name="newTaskEntry"
     placeholder="Add your Task">`;
-    listItem.appendChild(createBtn(`add`));
+
+    let addTaskBtn = createBtn(`✅`);
+    addTaskBtn.addEventListener(`click`, () => addDynamicTableEntry(document.getElementsByName(`newTaskEntry`)[0].value));
+
+    listItem.appendChild(addTaskBtn);
   }
 
   return listItem;
