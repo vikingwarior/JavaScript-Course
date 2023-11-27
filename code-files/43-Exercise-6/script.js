@@ -39,6 +39,10 @@ const addDynamicTableEntry = (newTaskLabel = null) => {
 if (lastListItem.querySelector('input[type="text"]') !== null) lastListItem.remove();
 };
 
+const addTaskToList = (listToAddTask, listToRemoveTaskFrom,taskName) => {
+
+}; 
+
 const createListItem = (
   taskName = null,
   taskType = null,
@@ -51,7 +55,16 @@ const createListItem = (
   listItem.classList = `list-group-item d-flex align-items-center`;
 
   if (taskName != null) {
-    listItemContainer.appendChild(createCheckbox());
+    taskCheckBox = createCheckbox();
+
+    taskCheckBox.addEventListener(`change`, () => {
+      if (this.checked)
+        addTaskToList(doneTasks,toDoTasks, taskName);
+      else 
+        addTaskToList(toDoTasks, doneTasks, taskName);
+    });
+
+    listItemContainer.appendChild(taskCheckBox);
     listItemContainer.appendChild(createTasklabel(taskName));
     listItem.appendChild(listItemContainer);
 
