@@ -15,6 +15,14 @@ const createTasksTable = (tasks, completed = false) => {
     let lastEntryFlag = isLastEntry(tasks, taskName);
     let listItem = createListItem(taskName, completed, lastEntryFlag);
 
+    let checkbox = listItem.querySelector('input[type="checkbox"]');
+    checkbox.addEventListener(`change`, () => {
+      if (this.checked) addTaskToList(toDoTasks, doneTasks, taskName);
+      else addTaskToList(doneTasks, toDoTasks, taskName);
+    });
+
+    
+
     listContainer.appendChild(listItem);
   }
 
@@ -34,11 +42,6 @@ const createListItem = (
 
   if (taskName != null) {
     taskCheckBox = createCheckbox();
-
-    taskCheckBox.addEventListener(`change`, () => {
-      if (this.checked) addTaskToList(toDoTasks, doneTasks, taskName);
-      else addTaskToList(doneTasks, toDoTasks, taskName);
-    });
 
     listItemContainer.appendChild(taskCheckBox);
     listItemContainer.appendChild(createTasklabel(taskName));
@@ -75,10 +78,16 @@ const createCheckbox = () => {
 };
 
 const addTaskToList = (listToAddTaskTo, listToRemoveTaskFrom, taskName) => {
-  listToRemoveTaskFrom = listToRemoveTaskFrom.filter(e => e !== taskName);
+  const index = listToRemoveTaskFrom.indexOf(taskName);
+  listToRemoveTaskFrom.splice(index, 1);
+  // listToRemoveTaskFrom = listToRemoveTaskFrom.filter(e => e !== taskName);
 
   listToAddTaskTo.push(taskName);
-  console.log(`${listToAddTaskTo} | ${listToRemoveTaskFrom} | ${taskName}`)
+  // toDolistContainer.innerHTML = ``;
+  // toDolistContainer.appendChild(createTasksTable(toDoTasks));
+  console.log(toDoTasks);
+  console.log(doneTasks);
+  console.log(taskName);
 };
 
 const createTasklabel = (labelName) => {
