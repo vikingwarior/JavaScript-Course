@@ -1,14 +1,21 @@
 let toDoTasks = [`Grocery`, `Dusting`];
 let doneTasks = [`Walking the pets`, `Laundry`];
 
+/**
+ * This method takes the list of elements and returns a list that can be directly added inside DOM
+ * @param {object} tasks List of the tasks 
+ * @param {boolean} completed this flag defines if the list is of toDo Task or completed tasks
+ * @returns An Unorderded HTML list of tasks
+ */
 const createTasksTable = (tasks, completed = false) => {
   let listContainer = document.createElement(`ul`);
   listContainer.classList = `list-group`;
 
   for (let taskName of tasks) {
-    if (isLastEntry(tasks, taskName))
-      listContainer.appendChild(createListItem(taskName, completed, true));
-    else listContainer.appendChild(createListItem(taskName, completed, false));
+    let lastEntryFlag = isLastEntry(tasks, taskName);
+    let listItem = createListItem(taskName, completed, lastEntryFlag);
+
+    listContainer.appendChild(listItem);
   }
 
   return listContainer;
@@ -113,8 +120,7 @@ const isLastEntry = (arr, value) => {
 };
 
 let toDolistContainer = document.getElementsByClassName(`toDoList`)[0];
-let completedListContainer =
-  document.getElementsByClassName(`completedList`)[0];
+let completedListContainer = document.getElementsByClassName(`completedList`)[0];
 
-toDolistContainer.appendChild(createTasksTable(toDoTasks));
-// toDolistContainer.appendChild(createListItem());
+let tasksTable = createTasksTable(toDoTasks);
+toDolistContainer.appendChild(tasksTable);
