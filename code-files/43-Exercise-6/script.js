@@ -1,51 +1,22 @@
 let toDoTasks = [`Grocery`, `Dusting`];
 let doneTasks = [`Walking the pets`, `Laundry`];
 
-const createBtn = (btnLabel) => {
-  let btn = document.createElement("button");
-  btn.classList = `btn btn-outline-primary rounded-circle border btn-outline-info border-0 ms-auto`;
-  btn.innerHTML = btnLabel;
-  return btn;
+const createTasksTable = (tasks, completed = false) => {
+  let listContainer = document.createElement(`ul`);
+  listContainer.classList = `list-group`;
+
+  for (let taskName of tasks) {
+    if (isLastEntry(tasks, taskName))
+      listContainer.appendChild(createListItem(taskName, completed, true));
+    else listContainer.appendChild(createListItem(taskName, completed, false));
+  }
+
+  return listContainer;
 };
-
-const createCheckbox = () => {
-  let checkBox = document.createElement(`input`);
-  checkBox.type = `checkbox`;
-  checkBox.classList = `form-check-input me-1`;
-
-  return checkBox;
-};
-
-const createTasklabel = (labelName) => {
-  label = document.createElement(`label`);
-  label.classList = `form-check-label`;
-  label.innerHTML = `<s>${labelName}</s>` ? labelName : taskType == `completed`;
-
-  return label;
-};
-
-const addDynamicTableEntry = (newTaskLabel = null) => {
-  let lastListItem = document.getElementById(`last`);
-  lastListItem.removeAttribute(`id`);
-
-  let addBtn = lastListItem.querySelector(`button`);
-  lastListItem.removeChild(addBtn);
-
-  let dynamicListItem = createListItem()?createListItem(newTaskLabel,`toDo`,true): newTaskLabel == null;
-  dynamicListItem.id = `last`;
-
-  lastListItem.insertAdjacentElement(`afterend`, dynamicListItem);
-
-if (lastListItem.querySelector('input[type="text"]') !== null) lastListItem.remove();
-};
-
-const addTaskToList = (listToAddTask, listToRemoveTaskFrom,taskName) => {
-
-}; 
 
 const createListItem = (
   taskName = null,
-  taskType = null,
+  completed = false,
   addButton = false
 ) => {
   let listItemContainer = document.createElement(`div`);
@@ -58,10 +29,8 @@ const createListItem = (
     taskCheckBox = createCheckbox();
 
     taskCheckBox.addEventListener(`change`, () => {
-      if (this.checked)
-        addTaskToList(doneTasks,toDoTasks, taskName);
-      else 
-        addTaskToList(toDoTasks, doneTasks, taskName);
+      if (this.checked) addTaskToList(toDoTasks, doneTasks, taskName);
+      else addTaskToList(doneTasks, toDoTasks, taskName);
     });
 
     listItemContainer.appendChild(taskCheckBox);
@@ -80,7 +49,9 @@ const createListItem = (
     placeholder="Add your Task">`;
 
     let addTaskBtn = createBtn(`✅`);
-    addTaskBtn.addEventListener(`click`, () => addDynamicTableEntry(document.getElementsByName(`newTaskEntry`)[0].value));
+    addTaskBtn.addEventListener(`click`, () =>
+      addDynamicTableEntry(document.getElementsByName(`newTaskEntry`)[0].value)
+    );
 
     listItem.appendChild(addTaskBtn);
   }
@@ -88,27 +59,62 @@ const createListItem = (
   return listItem;
 };
 
+const createCheckbox = () => {
+  let checkBox = document.createElement(`input`);
+  checkBox.type = `checkbox`;
+  checkBox.classList = `form-check-input me-1`;
+
+  return checkBox;
+};
+
+const addTaskToList = (listToAddTaskTo, listToRemoveTaskFrom, taskName) => {
+  listToRemoveTaskFrom = listToRemoveTaskFrom.filter(e => e !== taskName);
+
+  listToAddTaskTo.push(taskName);
+  console.log(`${listToAddTaskTo} | ${listToRemoveTaskFrom} | ${taskName}`)
+};
+
+const createTasklabel = (labelName) => {
+  label = document.createElement(`label`);
+  label.classList = `form-check-label`;
+  label.innerHTML = `<s>${labelName}</s>` ? labelName : taskType == `completed`;
+
+  return label;
+};
+
+const createBtn = (btnLabel) => {
+  let btn = document.createElement("button");
+  btn.classList = `btn btn-outline-primary rounded-circle border btn-outline-info border-0 ms-auto`;
+  btn.innerHTML = btnLabel;
+  return btn;
+};
+
+const addDynamicTableEntry = (newTaskLabel = null) => {
+  let lastListItem = document.getElementById(`last`);
+  lastListItem.removeAttribute(`id`);
+
+  let addBtn = lastListItem.querySelector(`button`);
+  lastListItem.removeChild(addBtn);
+
+  let dynamicListItem = createListItem()
+    ? createListItem(newTaskLabel, `toDo`, true)
+    : newTaskLabel == null;
+  dynamicListItem.id = `last`;
+
+  lastListItem.insertAdjacentElement(`afterend`, dynamicListItem);
+
+  if (lastListItem.querySelector('input[type="text"]') !== null)
+    lastListItem.remove();
+};
+
 const isLastEntry = (arr, value) => {
   if (arr.length > 0) return value === arr[arr.length - 1];
   return false;
-};
-
-const createTasksTable = (tasks, listType) => {
-  let listContainer = document.createElement(`ul`);
-  listContainer.classList = `list-group`;
-
-  for (let taskName of tasks) {
-    if (isLastEntry(tasks, taskName))
-      listContainer.appendChild(createListItem(taskName, listType, true));
-    else listContainer.appendChild(createListItem(taskName, listType, false));
-  }
-
-  return listContainer;
 };
 
 let toDolistContainer = document.getElementsByClassName(`toDoList`)[0];
 let completedListContainer =
   document.getElementsByClassName(`completedList`)[0];
 
-toDolistContainer.appendChild(createTasksTable(toDoTasks, `toDo`));
+toDolistContainer.appendChild(createTasksTable(toDoTasks));
 // toDolistContainer.appendChild(createListItem());
