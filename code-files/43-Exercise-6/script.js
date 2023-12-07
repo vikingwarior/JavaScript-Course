@@ -21,8 +21,6 @@ const createTasksTable = (tasks, completed = false) => {
       else addTaskToList(doneTasks, toDoTasks, taskName);
     });
 
-    
-
     listContainer.appendChild(listItem);
   }
 
