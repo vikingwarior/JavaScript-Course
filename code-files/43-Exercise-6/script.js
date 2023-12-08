@@ -17,7 +17,7 @@ const createTasksTable = (tasks, completed = false) => {
 
     let checkbox = listItem.querySelector('input[type="checkbox"]');
     checkbox.addEventListener(`change`, () => {
-      if (this.checked) addTaskToList(toDoTasks, doneTasks, taskName);
+      if (checkbox.checked) addTaskToList(toDoTasks, doneTasks, taskName);
       else addTaskToList(doneTasks, toDoTasks, taskName);
     });
 
