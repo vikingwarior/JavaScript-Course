@@ -1,13 +1,44 @@
 let toDoTasks = [`Grocery`, `Dusting`, `Rationing`, `Bills`];
 let doneTasks = [`Walking the pets`, `Laundry`];
 
+const renderUI = () => {
+  let toDoTab = document.getElementsByClassName(`nav-link`)[0];
+  let completedTab = document.getElementsByClassName(`nav-link`)[1];
+
+  toDoTab.addEventListener(`click`, () => {
+    toDoTab.classList.add(`active`);
+    completedTab.classList.remove(`active`);
+
+    renderTabContent(toDoTasks, false);
+  });
+  completedTab.addEventListener(`click`, () => {
+    completedTab.classList.add(`active`);
+    toDoTab.classList.remove(`active`);
+
+    renderTabContent(doneTasks, true);
+  });
+};
+
+const renderTabContent = (list, taskTypeFlag) => {
+  let listContainer = document.getElementsByClassName(`listContainer`)[0];
+
+  if (list.length === 0) {
+    loadEmptyMessageForList(taskTypeFlag);
+  }
+
+  let tasksTable = createTasksTable(list, taskTypeFlag);
+  listContainer.appendChild(tasksTable);
+  addEventListenersToCheckBoxes(listContainer);
+};
+
+
 /**
  * This method takes the list of elements and returns a list that can be directly added inside DOM
  * @param {object} tasks List of the tasks
  * @param {boolean} completed this flag defines if the list is of toDo Task or completed tasks
  * @returns An Unorderded HTML list of tasks
  */
-const createTasksTable = (tasks, completed = false) => {
+const createTasksTable = (tasks, completed) => {
   let listContainer = document.createElement(`ul`);
   listContainer.classList = `list-group`;
 
@@ -22,7 +53,7 @@ const createTasksTable = (tasks, completed = false) => {
 
 const createListItem = (
   taskName = null,
-  completed = false,
+  completed = null,
   addButton = false
 ) => {
   let listItemContainer = document.createElement(`div`);
@@ -35,15 +66,18 @@ const createListItem = (
     taskCheckBox = createCheckbox();
 
     listItemContainer.appendChild(taskCheckBox);
-    listItemContainer.appendChild(createTasklabel(taskName));
+
+    let taskNameLabel = createTasklabel(taskName, completed);
+    listItemContainer.appendChild(taskNameLabel);
+
     listItem.appendChild(listItemContainer);
 
-    if (addButton) {
-      listItem.id = `last`;
+    if (addButton && !completed) {
+      createNewTaskBtn(listItem);
+    }
 
-      let newTaskBtn = createBtn(`+`);
-      newTaskBtn.addEventListener(`click`, () => addDynamicTableEntry());
-      listItem.appendChild(newTaskBtn);
+    if (completed) {
+      taskCheckBox.setAttribute(`checked`, ``);
     }
   } else {
     listItem.innerHTML = `<input class="form-control form-control border border-info border-0" type="text" name="newTaskEntry"
@@ -81,12 +115,19 @@ const addTaskToList = (listToAddTaskTo, listToRemoveTaskFrom, taskName) => {
   console.log(taskName);
 };
 
-const createTasklabel = (labelName) => {
+const createTasklabel = (labelName, completed) => {
   label = document.createElement(`label`);
   label.classList = `form-check-label`;
-  label.innerHTML = `<s>${labelName}</s>` ? labelName : taskType == `completed`;
+  label.innerHTML = completed === true ? `<s>${labelName}</s>` : labelName;
 
   return label;
+};
+
+const createNewTaskBtn = (liReference) => {
+  liReference.id = `last`;
+  let newTaskBtn = createBtn(`+`);
+  newTaskBtn.addEventListener(`click`, () => addDynamicTableEntry());
+  liReference.appendChild(newTaskBtn);
 };
 
 const createBtn = (btnLabel) => {
@@ -103,14 +144,17 @@ const addDynamicTableEntry = (newTaskLabel = null) => {
   let addBtn = lastListItem.querySelector(`button`);
   lastListItem.removeChild(addBtn);
 
-  let dynamicListItem = createListItem()
-    ? createListItem(newTaskLabel, `toDo`, true)
-    : newTaskLabel == null;
+  let dynamicListItem =
+    newTaskLabel == null
+      ? createListItem()
+      : createListItem(newTaskLabel, false, true);
   dynamicListItem.id = `last`;
 
   lastListItem.insertAdjacentElement(`afterend`, dynamicListItem);
 
-  addCheckBoxEventListener(dynamicListItem);
+  if (dynamicListItem !== null) {
+    addCheckBoxEventListener(dynamicListItem);
+  }
 
   if (lastListItem.querySelector('input[type="text"]') !== null)
     lastListItem.remove();
@@ -140,84 +184,12 @@ const addCheckBoxEventListener = (liReference) => {
       addTaskToList(toDoTasks, doneTasks, taskName);
     }
 
+    if (liReference.id === `last`) {
+      createNewTaskBtn(liReference.previousElementSibling);
+    }
     liReference.remove();
   });
 };
 
-
-// Driver code ->
-let toDolistContainer = document.getElementsByClassName(`listContainer`)[0];
-
-let tasksTable = createTasksTable(toDoTasks);
-toDolistContainer.appendChild(tasksTable);
-
-addEventListenersToCheckBoxes(toDolistContainer);
-
-// Boilerplate code for testing
-
-// HTML:
-// <!DOCTYPE html>
-// <html data-bs-theme="dark">
-
-// <head>
-//   <meta charset="utf-8">
-//   <meta name="viewport" content="width=device-width">
-//   <title>template</title>
-//   <link href="style.css" rel="stylesheet" type="text/css" />
-//   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-//     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-// </head>
-
-// <body>
-//    <div class="tabs d-flex flex-column justify-content-center align-items-center">
-//     <ul class="nav nav-pills my-4 ">
-//       <li class="toDo nav-item">
-//         <a class="nav-link active" href="#">To Do</a>
-//       </li>
-//       <li class="completed nav-item">
-//         <a class="nav-link" href="#">Completed</a>
-//       </li>
-//     </ul>
-//   </div>
-//   <div class="toDoList d-flex flex-column justify-content-center align-items-center">
-//   <ul class="list-group"><li class="list-group-item d-flex align-items-center"><div class="listItemContainer"><input type="checkbox" class="form-check-input me-1"><label class="form-check-label">Grocery</label></div></li><li class="list-group-item d-flex align-items-center" id="last"><div class="listItemContainer"><input type="checkbox" class="form-check-input me-1"><label class="form-check-label">Dusting</label></div><button class="btn btn-outline-primary rounded-circle border btn-outline-info border-0 ms-auto">+</button></li></ul></div>
-//   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-//     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-//     crossorigin="anonymous"></script>
-// </body>
-
-// </html>
-
-// JS:
-
-//  let toDoTasks = [`Grocery`, `Dusting`];
-//  let doneTasks = [`Walking the pets`, `Laundry`];
-
-//  let ulElems = document.getElementsByClassName('list-group-item d-flex align-items-center');
-
-//  for (let listItem of ulElems) {
-//    let checkbox = listItem.querySelector('input[type="checkbox"]');
-//    let taskName = listItem.querySelector('.form-check-label').innerText;
-
-//    checkbox.addEventListener('change', (listItem) => {
-//     if (checkbox.checked) {
-//       addTaskToList(doneTasks, toDoTasks, taskName);
-//       listItem.remove;
-//     } else {
-//       addTaskToList(toDoTasks, doneTasks, taskName);
-//     }
-//   });
-//  }
-
-//  const addTaskToList = (listToAddTaskTo, listToRemoveTaskFrom, taskName) => {
-//    const index = listToRemoveTaskFrom.indexOf(taskName);
-
-//    if (index !== -1) {
-//      listToRemoveTaskFrom.splice(index, 1);
-//      listToAddTaskTo.push(taskName);
-
-//      console.log(toDoTasks);
-//      console.log(doneTasks);
-//      console.log(taskName);
-//    }
-//  };
+// Start
+renderUI();
