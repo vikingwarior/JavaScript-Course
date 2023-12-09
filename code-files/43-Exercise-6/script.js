@@ -1,9 +1,9 @@
-let toDoTasks = [`Grocery`, `Dusting`];
+let toDoTasks = [`Grocery`, `Dusting`, `Rationing`, `Bills`];
 let doneTasks = [`Walking the pets`, `Laundry`];
 
 /**
  * This method takes the list of elements and returns a list that can be directly added inside DOM
- * @param {object} tasks List of the tasks 
+ * @param {object} tasks List of the tasks
  * @param {boolean} completed this flag defines if the list is of toDo Task or completed tasks
  * @returns An Unorderded HTML list of tasks
  */
@@ -14,18 +14,6 @@ const createTasksTable = (tasks, completed = false) => {
   for (let taskName of tasks) {
     let lastEntryFlag = isLastEntry(tasks, taskName);
     let listItem = createListItem(taskName, completed, lastEntryFlag);
-
-    let checkbox = listItem.querySelector('input[type="checkbox"]');
-    checkbox.addEventListener('change', () => {
-      if (checkbox.checked) {
-        addTaskToList(doneTasks, toDoTasks, taskName);
-        removeElementFromDOM(listItem);
-      } else {
-        addTaskToList(toDoTasks, doneTasks, taskName);
-        removeElementFromDOM(listItem);
-      }
-    });
-
     listContainer.appendChild(listItem);
   }
 
@@ -122,6 +110,8 @@ const addDynamicTableEntry = (newTaskLabel = null) => {
 
   lastListItem.insertAdjacentElement(`afterend`, dynamicListItem);
 
+  addCheckBoxEventListener(dynamicListItem);
+
   if (lastListItem.querySelector('input[type="text"]') !== null)
     lastListItem.remove();
 };
@@ -131,14 +121,37 @@ const isLastEntry = (arr, value) => {
   return false;
 };
 
-const removeElementFromDOM = (elementToBeRemoved) => {
-  document.removeChild(elementToBeRemoved);
+const addEventListenersToCheckBoxes = (container) => {
+  let ulElems = container.querySelectorAll(`li.list-group-item`);
+  console.log(ulElems);
+  for (let listItem of ulElems) {
+    addCheckBoxEventListener(listItem);
+  }
 };
 
+const addCheckBoxEventListener = (liReference) => {
+  let checkbox = liReference.querySelector('input[type="checkbox"]');
+  let taskName = liReference.querySelector(".form-check-label").innerText;
+
+  checkbox.addEventListener("change", () => {
+    if (checkbox.checked) {
+      addTaskToList(doneTasks, toDoTasks, taskName);
+    } else {
+      addTaskToList(toDoTasks, doneTasks, taskName);
+    }
+
+    liReference.remove();
+  });
+};
+
+
+// Driver code ->
 let toDolistContainer = document.getElementsByClassName(`listContainer`)[0];
 
 let tasksTable = createTasksTable(toDoTasks);
 toDolistContainer.appendChild(tasksTable);
+
+addEventListenersToCheckBoxes(toDolistContainer);
 
 // Boilerplate code for testing
 
@@ -177,34 +190,34 @@ toDolistContainer.appendChild(tasksTable);
 
 // JS:
 
-// let toDoTasks = [`Grocery`, `Dusting`];
-// let doneTasks = [`Walking the pets`, `Laundry`];
+//  let toDoTasks = [`Grocery`, `Dusting`];
+//  let doneTasks = [`Walking the pets`, `Laundry`];
 
-// let ulElems = document.getElementsByClassName('list-group-item d-flex align-items-center');
+//  let ulElems = document.getElementsByClassName('list-group-item d-flex align-items-center');
 
-// for (let listItem of ulElems) {
-//   let checkbox = listItem.querySelector('input[type="checkbox"]');
-//   let taskName = listItem.querySelector('.form-check-label').innerText;
-  
-//    checkbox.addEventListener('change', () => {
+//  for (let listItem of ulElems) {
+//    let checkbox = listItem.querySelector('input[type="checkbox"]');
+//    let taskName = listItem.querySelector('.form-check-label').innerText;
+
+//    checkbox.addEventListener('change', (listItem) => {
 //     if (checkbox.checked) {
 //       addTaskToList(doneTasks, toDoTasks, taskName);
+//       listItem.remove;
 //     } else {
 //       addTaskToList(toDoTasks, doneTasks, taskName);
 //     }
 //   });
-// }
+//  }
 
-// const addTaskToList = (listToAddTaskTo, listToRemoveTaskFrom, taskName) => {
-//   const index = listToRemoveTaskFrom.indexOf(taskName);
+//  const addTaskToList = (listToAddTaskTo, listToRemoveTaskFrom, taskName) => {
+//    const index = listToRemoveTaskFrom.indexOf(taskName);
 
-//   if (index !== -1) {
-//     listToRemoveTaskFrom.splice(index, 1);
-//     listToAddTaskTo.push(taskName);
+//    if (index !== -1) {
+//      listToRemoveTaskFrom.splice(index, 1);
+//      listToAddTaskTo.push(taskName);
 
-//     console.log(toDoTasks);
-//     console.log(doneTasks);
-//     console.log(taskName);
-//   }
-// };
-
+//      console.log(toDoTasks);
+//      console.log(doneTasks);
+//      console.log(taskName);
+//    }
+//  };
