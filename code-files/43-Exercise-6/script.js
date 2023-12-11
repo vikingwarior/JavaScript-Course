@@ -1,5 +1,9 @@
-let toDoTasks = [`Grocery`, `Dusting`, `Rationing`, `Bills`];
+// let toDoTasks = [`Grocery`, `Dusting`, `Rationing`, `Bills`];
+// let toDoTasks = [`Grocery`];
+let toDoTasks = [];
 let doneTasks = [`Walking the pets`, `Laundry`];
+let welcomeMessage = `Start writing your tasks<br>by clicking this button👇<br><br>`;
+let allTasksCompletedMessage = `All the tasks have been completed!<br>To add new tasks click this button👇<br><br>`;
 
 const renderUI = () => {
   let toDoTab = document.getElementsByClassName(`nav-link`)[0];
@@ -22,8 +26,11 @@ const renderUI = () => {
 const renderTabContent = (list, taskTypeFlag) => {
   let listContainer = document.getElementsByClassName(`listContainer`)[0];
 
+  listContainer.innerHTML = ``;
+
   if (list.length === 0) {
-    loadEmptyMessageForList(taskTypeFlag);
+    loadMessageForEmptyList(taskTypeFlag, welcomeMessage);
+    return;
   }
 
   let tasksTable = createTasksTable(list, taskTypeFlag);
@@ -31,6 +38,26 @@ const renderTabContent = (list, taskTypeFlag) => {
   addEventListenersToCheckBoxes(listContainer);
 };
 
+const loadMessageForEmptyList = (taskType, message) => {
+  let listContainer = document.getElementsByClassName(`listContainer`)[0];
+  if (!taskType) {
+    // let message = `Start Writing your Tasks<br>by clicking this button👇<br><br>`;
+
+    let addTask = document.createElement(`button`);
+    addTask.classList = `btn btn-outline-warning`;
+    addTask.innerText = `+ Add Task`;
+
+    listContainer.innerHTML = message;
+    listContainer.appendChild(addTask);
+
+    addTask.addEventListener(`click`, () => {
+      let taskTable = createTasksTable(toDoTasks, false);
+      listContainer.innerHTML = ``;
+      listContainer.appendChild(taskTable);
+    });
+  } else {
+  }
+};
 
 /**
  * This method takes the list of elements and returns a list that can be directly added inside DOM
@@ -42,10 +69,18 @@ const createTasksTable = (tasks, completed) => {
   let listContainer = document.createElement(`ul`);
   listContainer.classList = `list-group`;
 
-  for (let taskName of tasks) {
-    let lastEntryFlag = isLastEntry(tasks, taskName);
-    let listItem = createListItem(taskName, completed, lastEntryFlag);
+  let listItem;
+
+  if (tasks.length === 0 && !completed) {
+    listItem = createListItem();
+    listItem.id = `last`;
     listContainer.appendChild(listItem);
+  } else {
+    for (let taskName of tasks) {
+      let lastEntryFlag = isLastEntry(tasks, taskName);
+      listItem = createListItem(taskName, completed, lastEntryFlag);
+      listContainer.appendChild(listItem);
+    }
   }
 
   return listContainer;
@@ -63,7 +98,7 @@ const createListItem = (
   listItem.classList = `list-group-item d-flex align-items-center`;
 
   if (taskName != null) {
-    taskCheckBox = createCheckbox();
+    let taskCheckBox = createCheckbox();
 
     listItemContainer.appendChild(taskCheckBox);
 
@@ -80,18 +115,46 @@ const createListItem = (
       taskCheckBox.setAttribute(`checked`, ``);
     }
   } else {
-    listItem.innerHTML = `<input class="form-control form-control border border-info border-0" type="text" name="newTaskEntry"
-    placeholder="Add your Task">`;
-
-    let addTaskBtn = createBtn(`✅`);
-    addTaskBtn.addEventListener(`click`, () =>
-      addDynamicTableEntry(document.getElementsByName(`newTaskEntry`)[0].value)
-    );
-
-    listItem.appendChild(addTaskBtn);
+    insertNewTaskTextbox(listItem);
   }
 
   return listItem;
+};
+
+const insertNewTaskTextbox = (containerRef) => {
+  containerRef.innerHTML = `<input class="form-control form-control border border-info border-0" type="text" name="newTaskEntry"
+    placeholder="Add your Task">`;
+
+  let addTaskBtn = createBtn(`✅`);
+  addTaskBtn.addEventListener(`click`, () =>
+    addDynamicTableEntry(document.getElementsByName(`newTaskEntry`)[0].value)
+  );
+
+  containerRef.appendChild(addTaskBtn);
+};
+
+const addDynamicTableEntry = (newTaskLabel = null) => {
+  let lastListItem = document.getElementById(`last`);
+  lastListItem.removeAttribute(`id`);
+
+  let addBtn = lastListItem.querySelector(`button`);
+  lastListItem.removeChild(addBtn);
+
+  let dynamicListItem =
+    newTaskLabel == null
+      ? createListItem()
+      : createListItem(newTaskLabel, false, true);
+  dynamicListItem.id = `last`;
+
+  lastListItem.insertAdjacentElement(`afterend`, dynamicListItem);
+
+  if (dynamicListItem !== null) {
+    addCheckBoxEventListener(dynamicListItem);
+    toDoTasks.push(newTaskLabel);
+  }
+
+  if (lastListItem.querySelector('input[type="text"]') !== null)
+    lastListItem.remove();
 };
 
 const createCheckbox = () => {
@@ -100,19 +163,6 @@ const createCheckbox = () => {
   checkBox.classList = `form-check-input me-1`;
 
   return checkBox;
-};
-
-const addTaskToList = (listToAddTaskTo, listToRemoveTaskFrom, taskName) => {
-  const index = listToRemoveTaskFrom.indexOf(taskName);
-  listToRemoveTaskFrom.splice(index, 1);
-  // listToRemoveTaskFrom = listToRemoveTaskFrom.filter(e => e !== taskName);
-
-  listToAddTaskTo.push(taskName);
-  // toDolistContainer.innerHTML = ``;
-  // toDolistContainer.appendChild(createTasksTable(toDoTasks));
-  console.log(toDoTasks);
-  console.log(doneTasks);
-  console.log(taskName);
 };
 
 const createTasklabel = (labelName, completed) => {
@@ -135,29 +185,6 @@ const createBtn = (btnLabel) => {
   btn.classList = `btn btn-outline-primary rounded-circle border btn-outline-info border-0 ms-auto`;
   btn.innerHTML = btnLabel;
   return btn;
-};
-
-const addDynamicTableEntry = (newTaskLabel = null) => {
-  let lastListItem = document.getElementById(`last`);
-  lastListItem.removeAttribute(`id`);
-
-  let addBtn = lastListItem.querySelector(`button`);
-  lastListItem.removeChild(addBtn);
-
-  let dynamicListItem =
-    newTaskLabel == null
-      ? createListItem()
-      : createListItem(newTaskLabel, false, true);
-  dynamicListItem.id = `last`;
-
-  lastListItem.insertAdjacentElement(`afterend`, dynamicListItem);
-
-  if (dynamicListItem !== null) {
-    addCheckBoxEventListener(dynamicListItem);
-  }
-
-  if (lastListItem.querySelector('input[type="text"]') !== null)
-    lastListItem.remove();
 };
 
 const isLastEntry = (arr, value) => {
@@ -184,12 +211,28 @@ const addCheckBoxEventListener = (liReference) => {
       addTaskToList(toDoTasks, doneTasks, taskName);
     }
 
-    if (liReference.id === `last`) {
+    if (liReference.id === `last` && checkbox.checked) {
+      if (toDoTasks.length === 0) {
+        loadMessageForEmptyList(false, allTasksCompletedMessage);
+      } else{
       createNewTaskBtn(liReference.previousElementSibling);
+      }
     }
     liReference.remove();
   });
 };
 
+const addTaskToList = (listToAddTaskTo, listToRemoveTaskFrom, taskName) => {
+  const index = listToRemoveTaskFrom.indexOf(taskName);
+  listToRemoveTaskFrom.splice(index, 1);
+
+  listToAddTaskTo.push(taskName);
+  console.log(toDoTasks);
+  console.log(doneTasks);
+  console.log(taskName);
+};
+
+
 // Start
 renderUI();
+renderTabContent(toDoTasks, false);
