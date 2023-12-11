@@ -1,7 +1,5 @@
-// let toDoTasks = [`Grocery`, `Dusting`, `Rationing`, `Bills`];
-// let toDoTasks = [`Grocery`];
 let toDoTasks = [];
-let doneTasks = [`Walking the pets`, `Laundry`];
+let doneTasks = [];
 let welcomeMessage = `Start writing your tasks<br>by clicking this button👇<br><br>`;
 let allTasksCompletedMessage = `All the tasks have been completed!<br>To add new tasks click this button👇<br><br>`;
 
@@ -194,7 +192,6 @@ const isLastEntry = (arr, value) => {
 
 const addEventListenersToCheckBoxes = (container) => {
   let ulElems = container.querySelectorAll(`li.list-group-item`);
-  console.log(ulElems);
   for (let listItem of ulElems) {
     addCheckBoxEventListener(listItem);
   }
@@ -227,9 +224,6 @@ const addTaskToList = (listToAddTaskTo, listToRemoveTaskFrom, taskName) => {
   listToRemoveTaskFrom.splice(index, 1);
 
   listToAddTaskTo.push(taskName);
-  console.log(toDoTasks);
-  console.log(doneTasks);
-  console.log(taskName);
 };
 
 
