@@ -5,6 +5,7 @@
  - An object can hav "Multiple level" of prototypes.
  */
 
+ // WARNING -> PROTOTYPE is depricated due to very slow operation in every browser and JavaScript engine
 let organiztion = {
     oName : `PTC`
 };
