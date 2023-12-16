@@ -2,6 +2,7 @@ let toDoTasks = [];
 let doneTasks = [];
 let welcomeMessage = `Start writing your tasks<br>by clicking this button👇<br><br>`;
 let allTasksCompletedMessage = `All the tasks have been completed!<br>To add new tasks click this button👇<br><br>`;
+let emptyCompletedListMessage = `Whoops!<br>Seems you have no tasks<br>Better get going`;
 
 const renderUI = () => {
   let toDoTab = document.getElementsByClassName(`nav-link`)[0];
@@ -26,8 +27,10 @@ const renderTabContent = (list, taskTypeFlag) => {
 
   listContainer.innerHTML = ``;
 
+  let displayMessage = taskTypeFlag ? emptyCompletedListMessage : welcomeMessage;
+
   if (list.length === 0) {
-    loadMessageForEmptyList(taskTypeFlag, welcomeMessage);
+    loadMessageForEmptyList(taskTypeFlag, displayMessage);
     return;
   }
 
@@ -54,6 +57,7 @@ const loadMessageForEmptyList = (taskType, message) => {
       listContainer.appendChild(taskTable);
     });
   } else {
+    listContainer.innerHTML = message;
   }
 };
 
