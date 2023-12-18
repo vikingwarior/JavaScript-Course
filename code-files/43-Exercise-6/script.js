@@ -1,8 +1,26 @@
+let TO_DO_LIST_NAME = `toDoTasks`
+let COMPLETED_LIST_NAME = `doneTasks`
+
+let WELCOME_MESSAGE = `Start writing your tasks<br>by clicking this button👇<br><br>`;
+let TASKS_COMPLETED_MESSAGE_FOR_TO_DO = `All the tasks have been completed!<br>To add new tasks click this button👇<br><br>`;
+let EMPTY_COMPLETED_TASKS_LIST_MESSAGE = `Whoops!<br>Seems you have no tasks<br>Better get going`;
+
 let toDoTasks = [];
 let doneTasks = [];
-let welcomeMessage = `Start writing your tasks<br>by clicking this button👇<br><br>`;
-let allTasksCompletedMessage = `All the tasks have been completed!<br>To add new tasks click this button👇<br><br>`;
-let emptyCompletedListMessage = `Whoops!<br>Seems you have no tasks<br>Better get going`;
+
+const initializeTablesInLocalStorage = () => {
+  toDoTasks = getValueForList(TO_DO_LIST_NAME);
+  doneTasks = getValueForList(COMPLETED_LIST_NAME);
+};
+
+const getValueForList = (listName) => {
+  return localStorage.getItem(listName) === null ? [] : JSON.parse(localStorage.getItem(listName));
+};
+
+const updateTableEntries = () => {
+  localStorage.setItem(TO_DO_LIST_NAME, JSON.stringify(toDoTasks));
+  localStorage.setItem(COMPLETED_LIST_NAME, JSON.stringify(doneTasks));
+};
 
 const renderUI = () => {
   let toDoTab = document.getElementsByClassName(`nav-link`)[0];
@@ -27,7 +45,7 @@ const renderTabContent = (list, taskTypeFlag) => {
 
   listContainer.innerHTML = ``;
 
-  let displayMessage = taskTypeFlag ? emptyCompletedListMessage : welcomeMessage;
+  let displayMessage = taskTypeFlag ? EMPTY_COMPLETED_TASKS_LIST_MESSAGE : WELCOME_MESSAGE;
 
   if (list.length === 0) {
     loadMessageForEmptyList(taskTypeFlag, displayMessage);
@@ -153,6 +171,7 @@ const addDynamicTableEntry = (newTaskLabel = null) => {
   if (dynamicListItem !== null) {
     addCheckBoxEventListener(dynamicListItem);
     toDoTasks.push(newTaskLabel);
+    updateTableEntries();
   }
 
   if (lastListItem.querySelector('input[type="text"]') !== null)
@@ -214,9 +233,9 @@ const addCheckBoxEventListener = (liReference) => {
 
     if (liReference.id === `last` && checkbox.checked) {
       if (toDoTasks.length === 0) {
-        loadMessageForEmptyList(false, allTasksCompletedMessage);
-      } else{
-      createNewTaskBtn(liReference.previousElementSibling);
+        loadMessageForEmptyList(false, TASKS_COMPLETED_MESSAGE_FOR_TO_DO);
+      } else {
+        createNewTaskBtn(liReference.previousElementSibling);
       }
     }
     liReference.remove();
@@ -228,9 +247,11 @@ const addTaskToList = (listToAddTaskTo, listToRemoveTaskFrom, taskName) => {
   listToRemoveTaskFrom.splice(index, 1);
 
   listToAddTaskTo.push(taskName);
+  updateTableEntries();
 };
 
 
 // Start
+initializeTablesInLocalStorage();
 renderUI();
 renderTabContent(toDoTasks, false);
