@@ -3,7 +3,7 @@ let COMPLETED_LIST_NAME = `doneTasks`
 
 let WELCOME_MESSAGE = `Start writing your tasks<br>by clicking this button👇<br><br>`;
 let TASKS_COMPLETED_MESSAGE_FOR_TO_DO = `All the tasks have been completed!<br>To add new tasks click this button👇<br><br>`;
-let EMPTY_COMPLETED_TASKS_LIST_MESSAGE = `Whoops!<br>Seems you have no tasks<br>Better get going`;
+let EMPTY_COMPLETED_TASKS_LIST_MESSAGE = `Nothing Here!`;
 
 let toDoTasks = [];
 let doneTasks = [];
@@ -96,8 +96,9 @@ const createTasksTable = (tasks, completed) => {
     listItem.id = `last`;
     listContainer.appendChild(listItem);
   } else {
+    let listIndexCount = 0;
     for (let taskName of tasks) {
-      let lastEntryFlag = isLastEntry(tasks, taskName);
+      let lastEntryFlag = listIndexCount++ === tasks.length - 1;
       listItem = createListItem(taskName, completed, lastEntryFlag);
       listContainer.appendChild(listItem);
     }
@@ -109,7 +110,7 @@ const createTasksTable = (tasks, completed) => {
 const createListItem = (
   taskName = null,
   completed = null,
-  addButton = false
+  addButton = false,
 ) => {
   let listItemContainer = document.createElement(`div`);
   listItemContainer.classList = `listItemContainer`;
@@ -133,6 +134,16 @@ const createListItem = (
 
     if (completed) {
       taskCheckBox.setAttribute(`checked`, ``);
+
+      let deleteBtn = createBtn(`🗑️`, `danger`);
+      deleteBtn.addEventListener(`click`, () =>{
+        listItem.remove();
+        let taskIndex = doneTasks.indexOf(taskName);
+        doneTasks.splice(taskIndex, 1);
+        updateTableEntries();
+      });
+
+      listItem.appendChild(deleteBtn);
     }
   } else {
     insertNewTaskTextbox(listItem);
@@ -145,7 +156,7 @@ const insertNewTaskTextbox = (containerRef) => {
   containerRef.innerHTML = `<input class="form-control form-control border border-info border-0" type="text" name="newTaskEntry"
     placeholder="Add your Task">`;
 
-  let addTaskBtn = createBtn(`✅`);
+  let addTaskBtn = createBtn(`✅`, `success`);
   addTaskBtn.addEventListener(`click`, () =>
     addDynamicTableEntry(document.getElementsByName(`newTaskEntry`)[0].value)
   );
@@ -196,14 +207,15 @@ const createTasklabel = (labelName, completed) => {
 
 const createNewTaskBtn = (liReference) => {
   liReference.id = `last`;
-  let newTaskBtn = createBtn(`+`);
+  let newTaskBtn = createBtn(`+`, `info`);
+  newTaskBtn.classList += ` rounded-circle`;
   newTaskBtn.addEventListener(`click`, () => addDynamicTableEntry());
   liReference.appendChild(newTaskBtn);
 };
 
-const createBtn = (btnLabel) => {
+const createBtn = (btnLabel, colorType) => {
   let btn = document.createElement("button");
-  btn.classList = `btn btn-outline-primary rounded-circle border btn-outline-info border-0 ms-auto`;
+  btn.classList = `btn btn-outline-${colorType} border border-0 ms-auto`;
   btn.innerHTML = btnLabel;
   return btn;
 };
@@ -237,6 +249,8 @@ const addCheckBoxEventListener = (liReference) => {
       } else {
         createNewTaskBtn(liReference.previousElementSibling);
       }
+    } else if (!checkbox.checked && doneTasks.length === 0) {
+      loadMessageForEmptyList(true, EMPTY_COMPLETED_TASKS_LIST_MESSAGE);
     }
     liReference.remove();
   });
