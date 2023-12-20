@@ -222,7 +222,7 @@ const addDynamicTableEntry = (newTaskLabel = null) => {
 
   lastListItem.insertAdjacentElement(`afterend`, dynamicListItem);
 
-  if (dynamicListItem !== null) {
+  if (newTaskLabel !== null) {
     addCheckBoxEventListener(dynamicListItem);
     toDoTasks.push(newTaskLabel);
     updateTableEntries(TO_DO_LIST_ENTRY_NAME);
