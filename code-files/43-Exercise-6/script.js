@@ -1,5 +1,6 @@
-let TO_DO_LIST_NAME = `toDoTasks`
-let COMPLETED_LIST_NAME = `doneTasks`
+let TO_DO_LIST_ENTRY_NAME = `toDoTasks`
+let COMPLETED_LIST_ENTRY_NAME = `doneTasks`
+let LAST_OPENED_LIST_ENTRY_NAME = `lastOpenedList`
 
 let WELCOME_MESSAGE = `Start writing your tasks<br>by clicking this button👇<br><br>`;
 let TASKS_COMPLETED_MESSAGE_FOR_TO_DO = `All the tasks have been completed!<br>To add new tasks click this button👇<br><br>`;
@@ -7,19 +8,26 @@ let EMPTY_COMPLETED_TASKS_LIST_MESSAGE = `Nothing Here!`;
 
 let toDoTasks = [];
 let doneTasks = [];
+let lastOpenedList;
 
 const initializeTablesInLocalStorage = () => {
-  toDoTasks = getValueForList(TO_DO_LIST_NAME);
-  doneTasks = getValueForList(COMPLETED_LIST_NAME);
+  toDoTasks = getValueForList(TO_DO_LIST_ENTRY_NAME);
+  doneTasks = getValueForList(COMPLETED_LIST_ENTRY_NAME);
+  lastOpenedList = getLastOpenedList();
 };
 
 const getValueForList = (listName) => {
   return localStorage.getItem(listName) === null ? [] : JSON.parse(localStorage.getItem(listName));
 };
 
-const updateTableEntries = () => {
-  localStorage.setItem(TO_DO_LIST_NAME, JSON.stringify(toDoTasks));
-  localStorage.setItem(COMPLETED_LIST_NAME, JSON.stringify(doneTasks));
+const getLastOpenedList = () => {
+  return (localStorage.getItem(LAST_OPENED_LIST_ENTRY_NAME) === null) ? TO_DO_LIST_ENTRY_NAME : localStorage.getItem(LAST_OPENED_LIST_ENTRY_NAME);
+};
+
+const updateTableEntries = (entryType = undefined) => {
+  if (entryType === undefined || entryType === TO_DO_LIST_ENTRY_NAME) localStorage.setItem(TO_DO_LIST_ENTRY_NAME, JSON.stringify(toDoTasks));
+  if (entryType === undefined || entryType === COMPLETED_LIST_ENTRY_NAME) localStorage.setItem(COMPLETED_LIST_ENTRY_NAME, JSON.stringify(doneTasks));
+  if (entryType === undefined || entryType === LAST_OPENED_LIST_ENTRY_NAME) localStorage.setItem(LAST_OPENED_LIST_ENTRY_NAME, lastOpenedList);
 };
 
 const renderUI = () => {
@@ -27,20 +35,28 @@ const renderUI = () => {
   let completedTab = document.getElementsByClassName(`nav-link`)[1];
 
   toDoTab.addEventListener(`click`, () => {
-    toDoTab.classList.add(`active`);
     completedTab.classList.remove(`active`);
 
     renderTabContent(toDoTasks, false);
+
+    lastOpenedList = TO_DO_LIST_ENTRY_NAME;
+    updateTableEntries(LAST_OPENED_LIST_ENTRY_NAME);
   });
   completedTab.addEventListener(`click`, () => {
-    completedTab.classList.add(`active`);
+
     toDoTab.classList.remove(`active`);
 
     renderTabContent(doneTasks, true);
+
+    lastOpenedList = COMPLETED_LIST_ENTRY_NAME;
+    updateTableEntries(LAST_OPENED_LIST_ENTRY_NAME);
   });
 };
 
 const renderTabContent = (list, taskTypeFlag) => {
+  let currentTab = !taskTypeFlag ? document.getElementsByClassName(`nav-link`)[0] : document.getElementsByClassName(`nav-link`)[1];
+  currentTab.classList.add(`active`);
+
   let listContainer = document.getElementsByClassName(`listContainer`)[0];
 
   listContainer.innerHTML = ``;
@@ -136,11 +152,13 @@ const createListItem = (
       taskCheckBox.setAttribute(`checked`, ``);
 
       let deleteBtn = createBtn(`🗑️`, `danger`);
-      deleteBtn.addEventListener(`click`, () =>{
+      deleteBtn.addEventListener(`click`, () => {
         listItem.remove();
         let taskIndex = doneTasks.indexOf(taskName);
         doneTasks.splice(taskIndex, 1);
-        updateTableEntries();
+        updateTableEntries(COMPLETED_LIST_ENTRY_NAME);
+
+        if (doneTasks.length === 0) loadMessageForEmptyList(true, EMPTY_COMPLETED_TASKS_LIST_MESSAGE);
       });
 
       listItem.appendChild(deleteBtn);
@@ -153,15 +171,40 @@ const createListItem = (
 };
 
 const insertNewTaskTextbox = (containerRef) => {
-  containerRef.innerHTML = `<input class="form-control form-control border border-info border-0" type="text" name="newTaskEntry"
-    placeholder="Add your Task">`;
+  
+  let newTaskTextBox = buildTextBoxForNewTask()
+  containerRef.appendChild(newTaskTextBox);
+
+  newTaskTextBox.addEventListener(`keydown`, e => e.code == `Enter` && addNewToDoTask());
 
   let addTaskBtn = createBtn(`✅`, `success`);
-  addTaskBtn.addEventListener(`click`, () =>
-    addDynamicTableEntry(document.getElementsByName(`newTaskEntry`)[0].value)
-  );
+  addTaskBtn.addEventListener(`click`, addNewToDoTask);
+
 
   containerRef.appendChild(addTaskBtn);
+};
+
+const buildTextBoxForNewTask = () => {
+  let textBox = document.createElement(`input`);
+  textBox.type = `text`;
+  textBox.name = `newTaskEntry`
+  textBox.placeholder = `Add your Task`
+  textBox.classList = `form-control border-0`;
+
+  return textBox;
+};
+
+const addNewToDoTask = () => {
+  let newTaskEntry = document.getElementsByName(`newTaskEntry`)[0];
+  if (newTaskEntry.value == ``) {
+    newTaskEntry.classList.remove(`border-0`)
+    newTaskEntry.classList.add(`border-danger`);
+    newTaskEntry.classList.add(`list-group-item`);
+    newTaskEntry.classList.add(`list-group-item-danger`);
+    newTaskEntry.placeholder = `Task Entry cannot be Empty`
+  } else {
+    addDynamicTableEntry(newTaskEntry.value)
+  }
 };
 
 const addDynamicTableEntry = (newTaskLabel = null) => {
@@ -182,7 +225,7 @@ const addDynamicTableEntry = (newTaskLabel = null) => {
   if (dynamicListItem !== null) {
     addCheckBoxEventListener(dynamicListItem);
     toDoTasks.push(newTaskLabel);
-    updateTableEntries();
+    updateTableEntries(TO_DO_LIST_ENTRY_NAME);
   }
 
   if (lastListItem.querySelector('input[type="text"]') !== null)
@@ -268,4 +311,9 @@ const addTaskToList = (listToAddTaskTo, listToRemoveTaskFrom, taskName) => {
 // Start
 initializeTablesInLocalStorage();
 renderUI();
-renderTabContent(toDoTasks, false);
+
+if (lastOpenedList === TO_DO_LIST_ENTRY_NAME) {
+  renderTabContent(toDoTasks, false)
+} else {
+  renderTabContent(doneTasks, true);
+}
