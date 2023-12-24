@@ -1,31 +1,56 @@
 * {
   text-align: center;
   font-size: 1.5rem;
+  font-family: 'Source Code Pro', monospace;
 }
-  
+  /* ID */
   #highlighted-elem {
     color: red;
     background-color: blanchedalmond;
     border-style: solid;
     border-color: red;
   }
-  
-  .redBackground {
-    background-color: red;
+
+  /* CLASSES */
+  .brownText {
+    color: brown;
+  }
+
+  .container{
+    height: 100vh;
   }
   
   .greenBackground {
     background-color: green;
   }
   
+  .heading{
+    font-weight: 600;
+    scale: 1.5;
+  }
+
+  .parameters{
+    scale: 0.60;
+  }
+
+  .password{
+    max-width: 700px;
+  }
+
+  .redBackground {
+    background-color: red;
+  }
+
+  .thickBorder{
+    border: 5px solid black;
+  }
+
   .yellowText {
     color: yellow;
   }
-  
-  .brownText {
-    color: brown;
-  }
-  
-  .thickBorder{
-    border: 5px solid black;
+
+/* TAGS */
+
+li{
+  list-style: none;
 }

@@ -10,22 +10,26 @@
     border-color: red;
   }
   
-  .redBackground {
-    background-color: red;
+  .brownText {
+    color: brown;
   }
   
   .greenBackground {
     background-color: green;
   }
   
+  .heading{
+    font-weight: 600;
+  }
+
+  .redBackground {
+    background-color: red;
+  }
+
+  .thickBorder{
+    border: 5px solid black;
+  }
+
   .yellowText {
     color: yellow;
   }
-  
-  .brownText {
-    color: brown;
-  }
-  
-  .thickBorder{
-    border: 5px solid black;
-}
