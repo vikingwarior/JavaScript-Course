@@ -16,6 +16,10 @@
     color: brown;
   }
 
+  .btn.btn-info{
+    scale: 0.75;
+  }
+
   .container{
     height: 100vh;
   }
