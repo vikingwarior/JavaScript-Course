@@ -17,56 +17,37 @@
   <div class="container d-flex justify-content-center align-items-center flex-column">
     <h1 class="heading mb-5 text-success">Password Generator</h1>
     <!-- Password Texbox and button -->
-    <div class="input-group flex-nowrap password mb-3">
+    <div class="input-group flex-nowrap password ">
       <div class="input-group mb-3">
         <input readonly type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2" value="Password">
         <button class="btn btn-outline-success border-secondary">📋</button>
       </div>
     </div>
     <!-- Checkboxes for types of characters -->
-    <div class="parameters d-flex">
+    <div class="parameters d-flex checkbox-group">
       <h2 class="mx-4">Include: </h3>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" checked>
+          <input class="form-check-input" type="checkbox" id="lowercase" value="option1">
           <label class="form-check-label" for="inlineCheckbox1">Lowercase</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+          <input class="form-check-input" type="checkbox" id="uppercase" value="option2">
           <label class="form-check-label" for="inlineCheckbox2">Uppercase</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+          <input class="form-check-input"  id="numbers" type="checkbox" id="numbers" value="option3">
           <label class="form-check-label" for="inlineCheckbox3">Numbers</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+          <input class="form-check-input" type="checkbox" id="special" value="option4">
           <label class="form-check-label" for="inlineCheckbox4">Special </label>
         </div>
     </div>
-    <!-- Radio Buttons for Password Type -->
+    <!-- Password Type -->
     <div class="category parameters d-flex mb-4">
       <h2 class="mx-3"> Type:</h2>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-        <label class="form-check-label text-danger" for="inlineRadio1">Weak</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-        <label class="form-check-label text-warning" for="inlineRadio2">Normal</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-        <label class="form-check-label" for="inlineRadio3">Strong</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
-        <label class="form-check-label text-success" for="inlineRadio4">FBI Strong</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
-        <label class="form-check-label text-info" for="inlineRadio5">Lol!</label>
-      </div>
-    </div>
+      <label class="form-check-label text-danger-emphasis">Funny</label>
+     </div>
     <!-- Generate Button -->
     <button type="button" class="btn btn-outline-info">Generate</button>
     <button type="button" class="btn btn-info" type="button" hidden>
