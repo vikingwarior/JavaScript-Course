@@ -2,35 +2,36 @@ let SELECTED_PARAMETERS_ENTRY = "selected-parameters";
 let PASSWORD_TYPE_ENTRY = "password-type";
 
 let passwordTypeDiv = document.querySelector(`.category`);
-let passwordTypes = [`<label class="form-check-label text-danger-emphasis">Funny</label>`,
-                     `<label class="form-check-label text-danger">Weak</label>`,    
-                     `<label class="form-check-label text-warning">Normal</label>`,    
-                     `<label class="form-check-label">Strong</label>`,
-                     `<label class="form-check-label text-success">FBI Strong</label>`];
+let passwordTypes = [
+  `<label class="form-check-label text-danger-emphasis">Funny</label>`,
+  `<label class="form-check-label text-danger">Weak</label>`,
+  `<label class="form-check-label text-warning">Normal</label>`,
+  `<label class="form-check-label">Strong</label>`,
+  `<label class="form-check-label text-success">FBI Strong</label>`,
+];
 
-class Password {
-  constructor(params) {
-    this._params = params;
-    this.selectedParams = params.SELECTED_PARAMETERS_ENTRY;
-    this.passwordType = params.PASSWORD_TYPE_ENTRY;
+class PasswordUtils {
+  constructor(passwordType, selectedParams) {
+    this._passwordType = passwordType;
+    this._selectedParams = selectedParams;
   }
 
-  generatePassword() {
-    switch (passwordType) {
-      case "weak":
-        return generateWeakPassword(this.selectedParams);
+  static generatePassword() {
+    switch (this._passwordType) {
+      case 0:
+        return generateFunnyPassword(this._selectedParams);
 
-      case "normal":
-        return generateNormalPassword(this.selectedParams);
+      case 1:
+        return generateWeakPassword(this._selectedParams);
 
-      case "strong":
-        return generateStrongPassword(this.selectedParams);
+      case 2:
+        return generateNormalPassword(this._selectedParams);
 
-      case "fbi-strong":
-        return generateSuperStrongPassword(this.selectedParams);
+      case 3:
+        return generateStrongPassword(this._selectedParams);
 
-      case "lol":
-        return generateFunnyPassword(this.selectedParams);
+      case 4:
+        return generateSuperStrongPassword(this._selectedParams);
 
       default:
         break;
@@ -48,7 +49,9 @@ class Password {
   generateFunnyPassword(params) {}
 }
 
-let characterCheckBoxes = document.querySelector(`.checkbox-group`).querySelectorAll(`.form-check-input`);
+let characterCheckBoxes = document
+  .querySelector(`.checkbox-group`)
+  .querySelectorAll(`.form-check-input`);
 let passwordCategory = document.querySelector(`.category`);
 
 /**
@@ -74,22 +77,19 @@ function addEventListenerToCheckbox(checkboxRef) {
 }
 
 function updatePasswordType(difficultyLevel) {
-    let passwordTypeLabel = passwordTypeDiv.querySelector(`.form-check-label`);
-    console.log(passwordTypeLabel);
-    passwordTypeLabel.remove();
-    passwordTypeDiv.innerHTML += passwordTypes[difficultyLevel];
+  let passwordTypeLabel = passwordTypeDiv.querySelector(`.form-check-label`);
+  console.log(passwordTypeLabel);
+  passwordTypeLabel.remove();
+  passwordTypeDiv.innerHTML += passwordTypes[difficultyLevel];
 }
-
 
 let paramsObject = {};
 
 function updateParams() {
-  Object.assign(paramsObject, { "selected-parameters" : checkedParameters });
+  Object.assign(paramsObject, { "selected-parameters": checkedParameters });
   console.log(paramsObject);
 }
 
 let generateBtn = document.querySelector(`.btn.btn-outline-info`);
 
-generateBtn.addEventListener(`click`, () => {
-    
-});
+generateBtn.addEventListener(`click`, () => {});
