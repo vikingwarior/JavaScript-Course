@@ -16,22 +16,22 @@ class PasswordUtils {
     this._selectedParams = selectedParams;
   }
 
-  static generatePassword() {
-    switch (this._passwordType) {
+  static generatePassword(passwordType, selectedParams) {
+    switch (passwordType) {
       case 0:
-        return generateFunnyPassword(this._selectedParams);
+        return generateFunnyPassword(selectedParams);
 
       case 1:
-        return generateWeakPassword(this._selectedParams);
+        return generateWeakPassword(selectedParams);
 
       case 2:
-        return generateNormalPassword(this._selectedParams);
+        return generateNormalPassword(selectedParams);
 
       case 3:
-        return generateStrongPassword(this._selectedParams);
+        return generateStrongPassword(selectedParams);
 
       case 4:
-        return generateSuperStrongPassword(this._selectedParams);
+        return generateSuperStrongPassword(selectedParams);
 
       default:
         break;
