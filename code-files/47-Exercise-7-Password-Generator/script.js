@@ -54,13 +54,6 @@ let characterCheckBoxes = document
   .querySelectorAll(`.form-check-input`);
 let passwordCategory = document.querySelector(`.category`);
 
-/**
-    {
-     "selected-parameters" :  []
-     password-type : weak
-    }
- */
-
 let checkedParameters = [];
 
 for (let checkbox of characterCheckBoxes) {
