@@ -85,4 +85,6 @@ function updateParams() {
 
 let generateBtn = document.querySelector(`.btn.btn-outline-info`);
 
-generateBtn.addEventListener(`click`, () => {});
+generateBtn.addEventListener(`click`, () => {
+  let passwordString = PasswordUtils.generatePassword(checkedParameters.length, checkedParameters);
+});
