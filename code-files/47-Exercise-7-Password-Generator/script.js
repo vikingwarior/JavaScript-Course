@@ -16,7 +16,10 @@ class PasswordUtils {
     this._selectedParams = selectedParams;
   }
 
-  static generatePassword(passwordType, selectedParams) {
+  generatePassword() {
+    let passwordType = this._passwordType;
+    let selectedParams = this._selectedParams;
+
     switch (passwordType) {
       case 0:
         return generateFunnyPassword(selectedParams);
@@ -86,5 +89,6 @@ function updateParams() {
 let generateBtn = document.querySelector(`.btn.btn-outline-info`);
 
 generateBtn.addEventListener(`click`, () => {
-  let passwordString = PasswordUtils.generatePassword(checkedParameters.length, checkedParameters);
+  const password = new PasswordUtils(checkedParameters.length, checkedParameters);
+  let passwordString = password.generatePassword();
 });
