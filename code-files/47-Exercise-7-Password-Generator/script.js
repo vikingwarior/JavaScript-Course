@@ -16,10 +16,113 @@ class PasswordUtils {
     this._selectedParams = selectedParams;
   }
 
+  weakPasswords = [
+    `12345`,
+    `123456`,
+    `123456789`,
+    `test1`,
+    `password`,
+    `12345678`,
+    `zinch`,
+    `g_czechout`,
+    `asdf`,
+    `qwerty`,
+    `1234567890`,
+    `1234567`,
+    `Aa123456`,
+    `iloveyou`,
+    `1234`,
+    `abc123`,
+    `111111`,
+    `123123`,
+    `dubsmash`,
+    `test`,
+    `princess`,
+    `qwertyuiop`,
+    `sunshine`,
+    `BvtTest123`,
+    `11111`,
+    `ashley`,
+    `00000`,
+    `000000`,
+    `password1`,
+    `monkey`,
+    `livetest`,
+    `55555`,
+    `soccer`,
+    `charlie`,
+    `asdfghjkl`,
+    `654321`,
+    `family`,
+    `michael`,
+    `123321`,
+    `football`,
+    `baseball`,
+    `q1w2e3r4t5y6`,
+    `nicole`,
+    `jessica`,
+    `purple`,
+    `shadow`,
+    `hannah`,
+    `chocolate`,
+    `michelle`,
+    `daniel`,
+    `maggie`,
+    `qwerty123`,
+    `hello`,
+    `112233`,
+    `jordan`,
+    `tigger`,
+    `666666`,
+    `987654321`,
+    `superman`,
+    `12345678910`,
+    `summer`,
+    `1q2w3e4r5t`,
+    `fitness`,
+    `bailey`,
+    `zxcvbnm`,
+    `fuckyou`,
+    `121212`,
+    `buster`,
+    `butterfly`,
+    `dragon`,
+    `jennifer`,
+    `amanda`,
+    `justin`,
+    `cookie`,
+    `basketball`,
+    `shopping`,
+    `pepper`,
+    `joshua`,
+    `hunter`,
+    `ginger`,
+    `matthew`,
+    `abcd1234`,
+    `taylor`,
+    `samantha`,
+    `whatever`,
+    `andrew`,
+    `1qaz2wsx3edc`,
+    `thomas`,
+    `jasmine`,
+    `animoto`,
+    `madison`,
+    `0987654321`,
+    `54321`,
+    `flower`,
+    `Password`,
+    `maria`,
+    `babygirl`,
+    `lovely`,
+    `sophie`,
+    `Chegg123`,
+  ];
+
   generatePassword() {
     let passwordType = this._passwordType;
     let selectedParams = this._selectedParams;
-    
+
     switch (passwordType) {
       case 0:
         return this.generateFunnyPassword(selectedParams);
@@ -42,7 +145,7 @@ class PasswordUtils {
   }
 
   generateWeakPassword(params) {
-    let pwd_value = `Weak Password`;
+    let pwd_value = this.weakPasswords[Math.floor(Math.random() * 100)];
     return pwd_value;
   }
 
@@ -57,7 +160,7 @@ class PasswordUtils {
   }
 
   generateSuperStrongPassword(params) {
-    let pwd_value = `Super Strong Password` ;
+    let pwd_value = `Super Strong Password`;
     return pwd_value;
   }
 
@@ -102,7 +205,10 @@ function updateParams() {
 let generateBtn = document.querySelector(`.btn.btn-outline-info`);
 
 generateBtn.addEventListener(`click`, () => {
-  let passwordUtils = new PasswordUtils(checkedParameters.length, checkedParameters);
+  let passwordUtils = new PasswordUtils(
+    checkedParameters.length,
+    checkedParameters
+  );
   let password = passwordUtils.generatePassword();
 
   let pwd_box = document.getElementsByName(`pwd-box`)[0];
