@@ -19,37 +19,52 @@ class PasswordUtils {
   generatePassword() {
     let passwordType = this._passwordType;
     let selectedParams = this._selectedParams;
-
+    
     switch (passwordType) {
       case 0:
-        return generateFunnyPassword(selectedParams);
+        return this.generateFunnyPassword(selectedParams);
 
       case 1:
-        return generateWeakPassword(selectedParams);
+        return this.generateWeakPassword(selectedParams);
 
       case 2:
-        return generateNormalPassword(selectedParams);
+        return this.generateNormalPassword(selectedParams);
 
       case 3:
-        return generateStrongPassword(selectedParams);
+        return this.generateStrongPassword(selectedParams);
 
       case 4:
-        return generateSuperStrongPassword(selectedParams);
+        return this.generateSuperStrongPassword(selectedParams);
 
       default:
         break;
     }
   }
 
-  generateWeakPassword(params) {}
+  generateWeakPassword(params) {
+    let pwd_value = `Weak Password`;
+    return pwd_value;
+  }
 
-  generateNormalPassword(params) {}
+  generateNormalPassword(params) {
+    let pwd_value = `Normal Password`;
+    return pwd_value;
+  }
 
-  generateStrongPassword(params) {}
+  generateStrongPassword(params) {
+    let pwd_value = `Strong Password`;
+    return pwd_value;
+  }
 
-  generateSuperStrongPassword(params) {}
+  generateSuperStrongPassword(params) {
+    let pwd_value = `Super Strong Password` ;
+    return pwd_value;
+  }
 
-  generateFunnyPassword(params) {}
+  generateFunnyPassword(params) {
+    let pwd_value = `Funny Password`;
+    return pwd_value;
+  }
 }
 
 let characterCheckBoxes = document
@@ -74,7 +89,6 @@ function addEventListenerToCheckbox(checkboxRef) {
 
 function updatePasswordType(difficultyLevel) {
   let passwordTypeLabel = passwordTypeDiv.querySelector(`.form-check-label`);
-  console.log(passwordTypeLabel);
   passwordTypeLabel.remove();
   passwordTypeDiv.innerHTML += passwordTypes[difficultyLevel];
 }
@@ -83,12 +97,14 @@ let paramsObject = {};
 
 function updateParams() {
   Object.assign(paramsObject, { "selected-parameters": checkedParameters });
-  console.log(paramsObject);
 }
 
 let generateBtn = document.querySelector(`.btn.btn-outline-info`);
 
 generateBtn.addEventListener(`click`, () => {
-  const password = new PasswordUtils(checkedParameters.length, checkedParameters);
-  let passwordString = password.generatePassword();
+  let passwordUtils = new PasswordUtils(checkedParameters.length, checkedParameters);
+  let password = passwordUtils.generatePassword();
+
+  let pwd_box = document.getElementsByName(`pwd-box`)[0];
+  pwd_box.value = password;
 });
