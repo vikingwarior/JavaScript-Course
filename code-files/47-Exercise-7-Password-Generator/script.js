@@ -11,9 +11,8 @@ let passwordTypes = [
 ];
 
 class PasswordUtils {
-  constructor(passwordType, selectedParams) {
+  constructor(passwordType) {
     this._passwordType = passwordType;
-    this._selectedParams = selectedParams;
   }
 
   weakPasswords = [
@@ -121,94 +120,63 @@ class PasswordUtils {
 
   generatePassword() {
     let passwordType = this._passwordType;
-    let selectedParams = this._selectedParams;
 
     switch (passwordType) {
-      case 0:
-        return this.generateFunnyPassword(selectedParams);
+      case `Funny`:
+        return this.generateFunnyPassword();
 
-      case 1:
-        return this.generateWeakPassword(selectedParams);
+      case `Weak`:
+        return this.generateWeakPassword();
 
-      case 2:
-        return this.generateNormalPassword(selectedParams);
+      case `Normal`:
+        return this.generateNormalPassword();
 
-      case 3:
-        return this.generateStrongPassword(selectedParams);
+      case `Strong`:
+        return this.generateStrongPassword();
 
-      case 4:
-        return this.generateSuperStrongPassword(selectedParams);
-
-      default:
-        break;
+      case `V.Strong`:
+        return this.generateSuperStrongPassword();
     }
   }
 
-  generateWeakPassword(params) {
+  generateWeakPassword() {
     let pwd_value = this.weakPasswords[Math.floor(Math.random() * 100)];
     return pwd_value;
   }
 
-  generateNormalPassword(params) {
+  generateNormalPassword() {
     let pwd_value = `Normal Password`;
     return pwd_value;
   }
 
-  generateStrongPassword(params) {
+  generateStrongPassword() {
     let pwd_value = `Strong Password`;
     return pwd_value;
   }
 
-  generateSuperStrongPassword(params) {
+  generateSuperStrongPassword() {
     let pwd_value = `Super Strong Password`;
     return pwd_value;
   }
 
-  generateFunnyPassword(params) {
+  generateFunnyPassword() {
     let pwd_value = `Funny Password`;
     return pwd_value;
   }
 }
 
-let characterCheckBoxes = document
-  .querySelector(`.checkbox-group`)
-  .querySelectorAll(`.form-check-input`);
-let passwordCategory = document.querySelector(`.category`);
 
-let checkedParameters = [];
-
-for (let checkbox of characterCheckBoxes) {
-  addEventListenerToCheckbox(checkbox);
+function getSelectedPasswordType() {
+  return document
+    .querySelector(`.category.parameters`)
+    .querySelector(`input[type = "radio"]:checked`).value;
 }
 
-function addEventListenerToCheckbox(checkboxRef) {
-  checkboxRef.addEventListener(`change`, () => {
-    if (checkboxRef.checked) checkedParameters.push(checkboxRef.id);
-    else checkedParameters.splice(checkedParameters.indexOf(checkboxRef.id), 1);
-    updateParams();
-    updatePasswordType(checkedParameters.length);
-  });
-}
-
-function updatePasswordType(difficultyLevel) {
-  let passwordTypeLabel = passwordTypeDiv.querySelector(`.form-check-label`);
-  passwordTypeLabel.remove();
-  passwordTypeDiv.innerHTML += passwordTypes[difficultyLevel];
-}
-
-let paramsObject = {};
-
-function updateParams() {
-  Object.assign(paramsObject, { "selected-parameters": checkedParameters });
-}
-
-let generateBtn = document.querySelector(`.btn.btn-outline-info`);
+let generateBtn = document.querySelector(`.btn.btn-info`);
 
 generateBtn.addEventListener(`click`, () => {
-  let passwordUtils = new PasswordUtils(
-    checkedParameters.length,
-    checkedParameters
-  );
+  let passwordUtils = new PasswordUtils(getSelectedPasswordType());
+
   let password = passwordUtils.generatePassword();
 
   let pwd_box = document.getElementsByName(`pwd-box`)[0];
