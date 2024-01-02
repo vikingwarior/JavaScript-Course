@@ -16,9 +16,7 @@
     color: brown;
   }
 
-  .btn.btn-info{
-    scale: 0.5;
-  }
+
 
   .container{
     height: 100vh;
@@ -34,7 +32,7 @@
   }
 
   .parameters{
-    scale: 0.60;
+    scale: 0.80;
   }
 
   .password{

@@ -8,9 +8,10 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;400;600;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;400;600;900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -24,7 +25,7 @@
       </div>
     </div>
     <!-- Checkboxes for types of characters -->
-    <div class="parameters d-flex checkbox-group">
+    <!-- <div class="parameters d-flex checkbox-group">
       <h2 class="mx-4">Include: </h3>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="lowercase" value="option1">
@@ -35,21 +36,34 @@
           <label class="form-check-label" for="inlineCheckbox2">Uppercase</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input"  id="numbers" type="checkbox" id="numbers" value="option3">
+          <input class="form-check-input" id="numbers" type="checkbox" id="numbers" value="option3">
           <label class="form-check-label" for="inlineCheckbox3">Numbers</label>
         </div>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="special" value="option4">
           <label class="form-check-label" for="inlineCheckbox4">Special </label>
         </div>
-    </div>
+    </div> -->
     <!-- Password Type -->
     <div class="category parameters d-flex mb-4">
-      <h2 class="mx-3"> Type:</h2>
-      <label class="form-check-label text-danger-emphasis">Funny</label>
-     </div>
+      <h4 class="mx-3"> Type:</h2>
+      <input type="radio" class="btn-check" name="options-base" id="option1" autocomplete="off" checked>
+      <label class="btn text-danger" for="option1">Weak</label>
+
+      <input type="radio" class="btn-check" name="options-base" id="option2" autocomplete="off">
+      <label class="btn text-warning" for="option2">Normal</label>
+
+      <input type="radio" class="btn-check" name="options-base" id="option3" autocomplete="off">
+      <label class="btn " for="option3">Strong</label>
+
+      <input type="radio" class="btn-check" name="options-base" id="option4" autocomplete="off">
+      <label class="btn text-success" for="option4">V.Strong</label>
+
+      <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off">
+      <label class="btn text-danger-emphasis" for="option5">Funny</label>
+    </div>
     <!-- Generate Button -->
-    <button type="button" class="btn btn-outline-info">Generate</button>
+    <button type="button" class="btn btn-info">Generate</button>
     <button type="button" class="btn btn-info" type="button" hidden>
       <span class="spinner-border spinner-border-sm"></span>
       <span role="status">Loading...</span>
