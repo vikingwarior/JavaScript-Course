@@ -109,6 +109,117 @@ class PasswordUtils {
     `Chegg123`,
   ];
 
+  funnyPasswords = [
+    `I'mUnderYourBed`,
+    `GetOffMyLawn`,
+    `ItHurtsWhenIP`,
+    `ThePromisedLAN`,
+    `WrongPassword?`,
+    `NoWiForYou`,
+    `YouShallNotPass!`,
+    `ThisNetworkIsMine!`,
+    `WiFiforAdultsOnly`,
+    `HotSpotofNoReturn`,
+    `HideYourselves`,
+    `AllYourDataRBelong2Us`,
+    `GoAway!`,
+    `MyNetworkIsInviteOnly`,
+    `NotYourDataBucket`,
+    `EnterTheMatrix!`,
+    `GetYourOwnWiFi`,
+    `TryMeIfYouCan`,
+    `StayOutOrPayUp`,
+    `NetworkPoliceAreWatchingYou`,
+    `PasswordIsFunnyButSecure`,
+    `DontStealMyWiFi:`,
+    `NoFreeRides`,
+    `ICanHazInternetz`,
+    `AccessDenied`,
+    !`NoWiFi4U`,
+    `ThatsNotMyPassword!`,
+    `WiFisForbiddenToYou`,
+    `GetYourOwnWiFiNetwork!`,
+    `NoPassNoEntry`,
+    `StopUsingMyWiFi!`,
+    `Password_StartsWithP`,
+    `LANdoCalrissian`,
+    `DropItLikeItsHotspot`,
+    `AbrahamLinksys`,
+    `GetOffMyLAN!`,
+    `WiFisTheLimit`,
+    `NachoWiFi`,
+    `WiFightThePower`,
+    `PasswordIsGoneWithTheWind`,
+    `LifeInTheFastLANe`,
+    `ItBurnsWhenIP`,
+    `BillWiTheScienceFi`,
+    `ConnectifyMyEggs`,
+    `YellPenPineappleApplePenForAccess`,
+    `..PleaseWait`,
+    `NotTheWiFiYouAreLookingFor`,
+    `KeepItOnTheDownload`,
+    `JohnCenaWiFi`,
+    `WiFi-ghtyWarrior`,
+    `RouterIHardlyKnowHer`,
+    `WiFlyAndStayHigh`,
+    `ConnectMeIfYouCan`,
+    `TheMatrixWiFi`,
+    `WiFidelity`,
+    `PrettyFlyForAWiFi`,
+    `WiFiFoFum`,
+    `ICanHearYouPooping`,
+    `WiKnowWhatYouDidLastSummer`,
+    `WiFi-NallyConnected`,
+    `PasswordIsTaco`,
+    `NeverGonnaGiveYouUpWiFi`,
+    `CtrlAltDefeat`,
+    `TitanicSyncing`,
+    `WiFiHugsAndKisses`,
+    `It'sNotYouIt'sWiFi`,
+    `IAmGrootWiFi`,
+    `WiFiYouSoSerious?`,
+    `WuTangLAN`,
+    `LookMaNoWires`,
+    `SkynetGlobalNetwork`,
+    `WiFiOnTheRocks`,
+    `TheBlackPearl`,
+    `PasswordIsIncorrect`,
+    `WiFiAndChill?`,
+    `TheWiFiOfBrian`,
+    `WhoseLANIsItAnyway?`,
+    `PrettyFlyForAWiFi5G`,
+    `WiFiInPeace`,
+    `MakeWiFiGreatAgain`,
+    `NoSoup4U`,
+    `Password12345`,
+    `GetYourOwnWiFi`,
+    `IAmTheWiFiGod`,
+    `AllYourWiFiAreBelongToUs`,
+    `PasswordIsHidden`,
+    `ItHurtsWhenIP`,
+    `WhosUrDaddy`,
+    `IsThisTheMatrix?`,
+    `ConnectForCookies`,
+    `TheLANBeforeTime`,
+    `NoMorePasswords`,
+    `WiFiOrWeedyFi`,
+    `WiFiInMyDNA`,
+    `GetOffMyLawn!`,
+    `ISeeYouUsingMyWiFi`,
+    `WiFiOfTheTiger`,
+    `WiFiAndChill`,
+    `LANtasticVoyage`,
+    `DropItLikeItsHotspot`,
+    `MyWiFiBeLike`,
+    `WiFiIsMyBae`,
+    `ICanHazWiFi`,
+    `ItsRainingPasswords`,
+    `WiFiOrDieTrying`,
+    `TheWiFiWhisperer`,
+    `TheOnlyNetworkInTheVillage`,
+    `NerdAlertWiFi`,
+  ];
+
   generatePassword() {
     let passwordType = this._passwordType;
 
@@ -136,22 +247,84 @@ class PasswordUtils {
   }
 
   generateNormalPassword() {
-    let pwd_value = `Normal Password`;
+    let pwd_value = ``;
+    for (let i = 0; i < Math.floor(Math.random() * 5) + 5; i++) {
+      let isUppercase = Math.random() < 0.5;
+
+      let startCharCode = isUppercase ? 65 : 97; // ASCII code for 'A' or 'a'
+      let endCharCode = isUppercase ? 90 : 122; // ASCII code for 'Z' or 'z'
+
+      let randomCharCode =
+        Math.floor(Math.random() * (endCharCode - startCharCode + 1)) +
+        startCharCode;
+      pwd_value += String.fromCharCode(randomCharCode);
+    }
     return pwd_value;
   }
 
   generateStrongPassword() {
-    let pwd_value = `Strong Password`;
+    let pwd_value = ``;
+    for (let i = 0; i < Math.floor(Math.random() * 8) + 5; i++) {
+      let isAlphabet = Math.random() < 0.5;
+      if (isAlphabet) {
+        let isUppercase = Math.random() < 0.5;
+
+        let startCharCode = isUppercase ? 65 : 97; // ASCII code for 'A' or 'a'
+        let endCharCode = isUppercase ? 90 : 122; // ASCII code for 'Z' or 'z'
+
+        let randomCharCode =
+          Math.floor(Math.random() * (endCharCode - startCharCode + 1)) +
+          startCharCode;
+        pwd_value += String.fromCharCode(randomCharCode);
+      } else {
+        // Generate a random number between 0 and 9
+        pwd_value += Math.floor(Math.random() * 10);
+      }
+    }
     return pwd_value;
   }
 
   generateSuperStrongPassword() {
-    let pwd_value = `Super Strong Password`;
+    let pwd_value = ``;
+
+    for (let i = 0; i < Math.floor(Math.random() * 11) + 8; i++) {
+      let randomType = Math.floor(Math.random() * 3);
+
+      switch (randomType) {
+        case 0:
+          let isUppercase = Math.random() < 0.5;
+
+          let startCharCode = isUppercase ? 65 : 97; // ASCII code for 'A' or 'a'
+          let endCharCode = isUppercase ? 90 : 122; // ASCII code for 'Z' or 'z'
+
+          let randomCharCode =
+            Math.floor(Math.random() * (endCharCode - startCharCode + 1)) +
+            startCharCode;
+          pwd_value += String.fromCharCode(randomCharCode);
+          break;
+
+        case 1:
+          pwd_value += Math.floor(Math.random() * 10);
+          break;
+
+        case 2:
+          let specialCharacters = "!@#$%^&*()_-+=[]{}|;:,.<>?";
+          let randomSpecialChar =
+            specialCharacters[
+              Math.floor(Math.random() * specialCharacters.length)
+            ];
+          pwd_value += randomSpecialChar;
+          break;
+
+        default:
+          break;
+      }
+    }
     return pwd_value;
   }
 
   generateFunnyPassword() {
-    let pwd_value = `Funny Password`;
+    let pwd_value = this.funnyPasswords[Math.floor(Math.random() * 100)];
     return pwd_value;
   }
 }
