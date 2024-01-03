@@ -1,15 +1,6 @@
 let SELECTED_PARAMETERS_ENTRY = "selected-parameters";
 let PASSWORD_TYPE_ENTRY = "password-type";
 
-let passwordTypeDiv = document.querySelector(`.category`);
-let passwordTypes = [
-  `<label class="form-check-label text-danger-emphasis">Funny</label>`,
-  `<label class="form-check-label text-danger">Weak</label>`,
-  `<label class="form-check-label text-warning">Normal</label>`,
-  `<label class="form-check-label">Strong</label>`,
-  `<label class="form-check-label text-success">FBI Strong</label>`,
-];
-
 class PasswordUtils {
   constructor(passwordType) {
     this._passwordType = passwordType;
@@ -165,6 +156,15 @@ class PasswordUtils {
   }
 }
 
+let copy_btn = document.querySelector(
+  `button.btn.btn-outline-success.border-secondary`
+);
+
+let pwd_box = document.getElementsByName(`pwd-box`)[0];
+
+copy_btn.addEventListener(`click`, () => {
+  navigator.clipboard.writeText(pwd_box.value);
+});
 
 function getSelectedPasswordType() {
   return document
@@ -178,7 +178,5 @@ generateBtn.addEventListener(`click`, () => {
   let passwordUtils = new PasswordUtils(getSelectedPasswordType());
 
   let password = passwordUtils.generatePassword();
-
-  let pwd_box = document.getElementsByName(`pwd-box`)[0];
   pwd_box.value = password;
 });
