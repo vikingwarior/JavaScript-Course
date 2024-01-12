@@ -16,3 +16,12 @@ console.log(`e:${e}\nsubArr:[${subArr}]`);
 let obj = {...subArr};
 console.log(obj);
 
+// To override values with spread
+let obj2 = {
+    name: "Harsh",
+    empId: "001",
+    role:"employee"
+};
+
+console.log({...obj2, empId:"002"}); // This syntax will reflect changed values
+console.log({role: "admin", ...obj2}); // This syntax will reflect old values
