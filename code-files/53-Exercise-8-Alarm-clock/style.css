@@ -1,0 +1,35 @@
+* {
+  text-align: center;
+  font-size: 1.5rem;
+}
+  
+  #highlighted-elem {
+    color: red;
+    background-color: blanchedalmond;
+    border-style: solid;
+    border-color: red;
+  }
+  
+  .brownText {
+    color: brown;
+  }
+  
+  .greenBackground {
+    background-color: green;
+  }
+  
+  .heading{
+    font-weight: 600;
+  }
+
+  .redBackground {
+    background-color: red;
+  }
+
+  .thickBorder{
+    border: 5px solid black;
+  }
+
+  .yellowText {
+    color: yellow;
+  }

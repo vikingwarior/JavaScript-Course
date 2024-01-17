@@ -25,3 +25,5 @@ function getAvg(...nums) {
 }
 
 console.log(getAvg(...arr));
+
+// Q3 -> 
