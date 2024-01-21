@@ -11,30 +11,28 @@
 </head>
 
 <body>
-  <div class="clock d-flex flex-column justify-content-center">
-    <div>
-      <button class="set-alarm">Set alarm</button>
-    </div>
+  <div class="clock d-flex flex-column justify-content-center align-items-center">
     <div class="clock-body border border-5 rounded-pill">
       <div class="timebox d-flex justify-content-center">
         <div class="time hour">
-          <button class="button btn btn-increase hrs mb-1">⬆️</button>
-          <h1 class="timestamp hrs">11</h1>
-          <button class="button btn btn-decrease hrs">⬇️</button>
+          <button class="button btn btn-increase hrs mb-1">🔼</button>
+          <h1 class="time timestamp hrs">11</h1>
+          <button class="button btn btn-decrease hrs">🔽</button>
         </div>
         <div class="d-flex align-self-center">
-          <h1>:</h1>
+          <h1 class="time">:</h1>
           <div ></div>
         </div>
         <div class="time minute">
-          <button class="button btn btn-increase min mb-1">⬆️</button>
-          <h1 class="timestamp min">11</h1>
-          <button class="button btn btn-decrease min">⬇️</button>
+          <button class="button btn btn-increase min mb-1">🔼</button>
+          <h1 class="time timestamp min">11</h1>
+          <button class="button btn btn-decrease min">🔽</button>
         </div>
       </div>
-      <div class="alarm-options" hidden>
-        <button class="snooze">Snooze</button>
-        <button class="stop">Stop</button>
+      <div class="alarm-options mb-3">
+        <button class="set-alarm btn btn-outline-primary">Set alarm</button>
+        <button class="snooze btn btn-outline-warning" hidden>Snooze</button>
+        <button class="stop btn btn-outline-danger" hidden>Stop</button>
       </div>
     </div>
   </div>

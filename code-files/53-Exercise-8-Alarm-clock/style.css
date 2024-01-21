@@ -9,13 +9,23 @@
     border-style: solid;
     border-color: red;
   }
+
+  body{
+    height: 100vh
+  }
   
   .brownText {
     color: brown;
   }
-  
+
+  .clock{
+    height: 100vh;
+  }
+
   .clock-body{
-    max-width: 60%;
+    max-width: 50%;
+    min-width: 60%;
+    background-color: black;
   }
 
   .greenBackground {
@@ -32,6 +42,11 @@
 
   .thickBorder{
     border: 5px solid black;
+  }
+
+  .time{
+    color: green;
+    font-size: 100px;
   }
 
   .yellowText {
