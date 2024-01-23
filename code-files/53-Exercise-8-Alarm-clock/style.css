@@ -2,6 +2,11 @@
   text-align: center;
   font-size: 1.5rem;
 }
+
+  @font-face{
+    font-family: digital;
+    src: url(assets/font/digital-7.ttf);
+  }
   
   #highlighted-elem {
     color: red;
@@ -13,42 +18,19 @@
   body{
     height: 100vh
   }
-  
-  .brownText {
-    color: brown;
-  }
-
   .clock{
-    height: 100vh;
+    font-family: digital;
+
   }
 
   .clock-body{
-    max-width: 50%;
+    max-width: 60%;
     min-width: 60%;
     background-color: black;
   }
 
-  .greenBackground {
-    background-color: green;
-  }
-  
-  .heading{
-    font-weight: 600;
-  }
-
-  .redBackground {
-    background-color: red;
-  }
-
-  .thickBorder{
-    border: 5px solid black;
-  }
-
   .time{
     color: green;
-    font-size: 100px;
-  }
-
-  .yellowText {
-    color: yellow;
+    font-size: 400px;
+    padding: 0 2.5rem;
   }
