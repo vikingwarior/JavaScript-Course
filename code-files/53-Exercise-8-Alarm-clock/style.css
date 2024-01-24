@@ -19,6 +19,14 @@ p{
   padding: 0;
 }
 
+.format{
+  margin-bottom: 0;
+}
+
+.format.selected{
+  color: green;
+}
+
 .button{
   margin: 0;
   background-color: #00000000;

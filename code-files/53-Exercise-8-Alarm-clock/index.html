@@ -14,22 +14,23 @@
   <div class="clock ">
     <div class="clock-body">
       <div class="timebox">
-        <div class="inc">
-          <button class="button">🔼</button>
-          <p class="time">11</p>
-          <button class="button">🔽</button>
-        </div>
-        <span class="time">:</span>
-        <div class="inc">
-          <button class="button">🔼</button>
-          <p class="time">11</p>
-          <button class="button">🔽</button>
+        <p class="time">11 : 11 : 11</p>
+        <div class="abbrevation">
+          <p class="format selected">AM</p>
+          <p class="format">PM</p>
         </div>
       </div>
-      <div class="alarm-options">
-        <button class="set-alarm btn btn-outline-primary">Set alarm</button>
-        <button class="snooze btn btn-outline-warning" hidden>Snooze</button>
-        <button class="stop btn btn-outline-danger" hidden>Stop</button>
+      <div class="clock-modes">
+        <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off" checked>
+        <label class="btn" for="option5">Checked</label>
+
+        <input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off">
+        <label class="btn" for="option6">Radio</label>
+
+        <input type="radio" class="btn-check" name="options-base" id="option7" autocomplete="off">
+        <label class="btn" for="option7">Disabled</label>
+        <input type="radio" class="btn-check" name="options-base" id="option8" autocomplete="off">
+        <label class="btn" for="option8">Radio</label>
       </div>
     </div>
   </div>
