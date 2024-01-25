@@ -21,6 +21,7 @@ p{
 
 .format{
   margin-bottom: 0;
+  font-size: 1.5rem;
 }
 
 .format.selected{
@@ -61,11 +62,18 @@ p{
   border-radius: 455px;
 }
 
+.day{
+  color:aqua;
+  font-size: 3rem;
+  margin: 0;
+  rotate: -90deg;
+}
+
 .time {
   color: green;
-  font-size: 7rem;
+  font-size: 6rem;
   margin: 0;
-  padding: 0 1.5rem;
+  padding: 0;
 }
 
 .timebox{
