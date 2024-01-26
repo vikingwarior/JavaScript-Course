@@ -69,12 +69,12 @@ p{
   rotate: -90deg;
 }
 
-.stopwatch-btn{
+.options-btn{
   /* margin: 0.6rem; */
   scale: 0.75;
 }
 
-.stopwatch-options{
+.options{
   display: flex; 
   flex-direction: column;
 }
@@ -91,4 +91,10 @@ p{
   justify-content: center;
   align-items: center;
   margin-bottom: 1.5rem;
+}
+
+.time-div{
+  display: flex;
+  flex-direction: column;
+  overflow:wrap;
 }

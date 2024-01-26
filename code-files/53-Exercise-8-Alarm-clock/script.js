@@ -1,30 +1,3 @@
-class AlarmClock {
-  constructor() {
-    increaseButtons = document.getElementsByClassName(`button`);
-  }
-
-  render() {
-    return `<div class="timebox">
-              <div class="hours">
-                <button class="button increase">🔼</button>
-                <p class="time">11</p>
-                <button class="button decrease">🔽</button>
-              </div>
-              <span class="time">:</span>
-              <div class="inc">
-                <button class="button increase">🔼</button>
-                <p class="time">11</p>
-                <button class="button decrease">🔽</button>
-              </div>
-            </div>
-            <div class="alarm-options">
-              <button class="set-alarm btn btn-outline-primary">Set alarm</button>
-              <button class="snooze btn btn-outline-warning" hidden>Snooze</button>
-              <button class="stop btn btn-outline-danger" hidden>Stop</button>
-            </div>`;
-  }
-}
-
 class Clock {
   constructor() { }
 
@@ -55,10 +28,62 @@ class Stopwatch {
               <span class="time">:</span>
               <span class="time seconds">00</span>
             </div>
-            <div class="stopwatch-options">
-              <button type="button" class="btn btn-outline-success stopwatch-btn start" hidden>Start</button>
-              <button type="button" class="btn btn-outline-warning stopwatch-btn pause" >Pause</button>
-              <button type="button" class="btn btn-outline-danger stopwatch-btn stop" >Stop</button>
+            <div class="options">
+              <button type="button" class="btn btn-outline-success options-btn start">Start</button>
+              <button type="button" class="btn btn-outline-warning options-btn pause" hidden>Pause</button>
+              <button type="button" class="btn btn-outline-danger options-btn stop">Stop</button hidden>
             </div>`
+  }
+}
+
+class Timer{
+  render(){
+    return `<div class="time-div hours">
+    <button class="button increase">🔼</button>
+    <span class="time">00</span>
+    <button class="button decrease">🔽</button>
+  </div>
+  <span class="time">:</span>
+  <div class="time-div mins">
+    <button class="button increase">🔼</button>
+    <span class="time">00</span>
+    <button class="button decrease">🔽</button>
+  </div>
+  <span class="time">:</span>
+  <div class="time-div seconds">
+    <button class="button increase">🔼</button>
+    <span class="time">00</span>
+    <button class="button decrease">🔽</button>
+  </div>
+  <div class="options">
+    <button type="button" class="btn btn-outline-success options-btn start">Start</button>
+    <button type="button" class="btn btn-outline-warning options-btn pause" hidden>Pause</button>
+    <button type="button" class="btn btn-outline-danger options-btn stop" hidden>Stop</button>
+  </div>`
+  }
+}
+
+class AlarmClock {
+  constructor() {
+    increaseButtons = document.getElementsByClassName(`button`);
+  }
+
+  render() {
+    return `<div class="hours time-div">
+              <button class="button increase">🔼</button>
+              <span class="time">00</span>
+              <button class="button decrease">🔽</button>
+            </div>
+            <span class="time">:</span>
+            <div class="mins time-div">
+              <button class="button increase">🔼</button>
+              <span class="time">00</span>
+              <button class="button decrease">🔽</button>
+            </div>
+            <div class="options">
+              <button type="button" class="btn btn-outline-primary options-btn set">Set Alarm</button>
+              <button type="button" class="btn btn-outline-warning options-btn snooze" hidden>Snooze</button>
+              <button type="button" class="btn btn-outline-danger options-btn stop" hidden>Stop</button>
+            </div>`;
   }
 }
