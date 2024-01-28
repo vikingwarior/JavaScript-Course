@@ -19,6 +19,10 @@ p{
   padding: 0;
 }
 
+.abbrevation{
+  justify-self: start;
+}
+
 .button{
   margin: 0;
   background-color: #00000000;
@@ -41,6 +45,7 @@ p{
   align-items: center;
   font-family: digital;
   height: 100vh;
+  min-height: 67.48%;
 }
 
 .clock-body {
@@ -63,7 +68,8 @@ p{
   color:aqua;
   font-size: 3rem;
   margin: 0;
-  rotate: -90deg;
+  rotate: -45deg;
+  justify-self: end;
 }
 
 .format{
